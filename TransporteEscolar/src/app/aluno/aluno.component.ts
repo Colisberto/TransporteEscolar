@@ -7,6 +7,7 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter , MAT_MOMENT_DATE_ADAPTER_OPT
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AlunoService} from './aluno.service';
 
 @Component({
@@ -32,39 +33,34 @@ import {AlunoService} from './aluno.service';
 
 export class AlunoComponent implements OnInit {
 
-  constructor(private alunoService: AlunoService) {
-  }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private alunoService: AlunoService
+  ) { }
+
+  public isEditable =  false;
+
+  dataSource: MatTableDataSource<AlunoODT>;
+  @ViewChild
+  (MatSort, {static: true}) sort: MatSort;
+
+  displayedColumns: string[] = ['CPF', 'Nome', 'Endereço', 'Idade'];
 
   alunos: AlunoODT[];
 
-  aluno: AlunoODT =  {
-    id: null,
-    nome: null,
-    cpf: null,
-    telefone: null,
-    endereco: null,
-    dataNascimento: null,
-    email: null
-  };
-  displayedColumns: string[] = ['Nome', 'CPF', 'Telefone', 'Endereço', 'Ações'];
-  dataSource = new MatTableDataSource(this.alunos);
-
-  @ViewChild
-  (MatSort, {static: true}) sort: MatSort;//  MatSort responsável por ordenar a tabela gerada no formulário
-
   ngOnInit(): void {
-    this.dataSource.sort = this.sort; // Ordenando a tabela
+    this.alunoService.list().subscribe(dados => {
+      this.alunos = dados;
+      this.dataSource = new MatTableDataSource(this.alunos);
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  onSubmit(f: NgForm) {
-    this.aluno = (f.value);
-    console.log(this.aluno);  // { first: '', last: '' }
-    console.log(f.valid);  // false
-    console.log(f.value);
-  }
-  editar(aluno: AlunoODT) {
-    console.log(aluno);
+
+
+  editar(turma: AlunoODT) {
+    // this.router.navigate(['/turmaEdit/:id'],
+    //   {queryParams: turma});
+    this.router.navigate(['/turmaEdit/', turma.id]);
   }
 }
-
-

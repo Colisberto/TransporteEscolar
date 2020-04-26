@@ -10,6 +10,8 @@ import { AlunoODT} from './alunoODT';
 })
 export class AlunoService {
 
+  constructor(private http: HttpClient) {}
+
   aluno: AlunoODT;
 
   public alunos: AlunoODT[] = [{
@@ -41,7 +43,9 @@ export class AlunoService {
     }
   ];
 
-  constructor(private http: HttpClient) {}
+  getAluno(): AlunoODT[]{
+    return (this.alunos);
+  }
 
   // getAlunos(): AlunoDTO[] {
   //   // return this.alunos;
@@ -91,18 +95,18 @@ export class AlunoService {
   // Manipulação de erros
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
+      // Ocorreu um erro no cliente ou na rede. Manuseie de acordo..
       console.error('An error occurred:', error.error.message);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
+      // O back-end retornou um código de resposta sem êxito..
+      // O corpo da resposta pode conter pistas sobre o que deu errado,
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable with a user-facing error message
+    // retornar um observável com uma mensagem de erro voltada para o usuário
     return throwError(
-      'Something bad happened; please try again later.');
+      'Algo de errado aconteceu; por favor, tente novamente mais tarde.');
   }
 
 }
