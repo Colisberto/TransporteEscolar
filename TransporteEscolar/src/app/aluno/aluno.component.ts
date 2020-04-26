@@ -32,16 +32,19 @@ import {AlunoService} from './aluno.service';
 
 export class AlunoComponent implements OnInit {
 
-  constructor(private alunoService: AlunoService) { }
+  constructor(private alunoService: AlunoService) {
+  }
 
-  alunos: AlunoODT[] = this.alunoService.getAlunos();
+  alunos: AlunoODT[];
 
   aluno: AlunoODT =  {
-    cpf: null,
+    id: null,
     nome: null,
-    email: null,
+    cpf: null,
     telefone: null,
-    dataNascimento: null
+    endereco: null,
+    dataNascimento: null,
+    email: null
   };
   displayedColumns: string[] = ['Nome', 'CPF', 'Telefone', 'Endereço', 'Ações'];
   dataSource = new MatTableDataSource(this.alunos);

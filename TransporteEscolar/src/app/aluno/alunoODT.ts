@@ -1,9 +1,10 @@
-export interface AlunoODT{
+export interface AlunoODT {
 
-   cpf: string;
-   nome: string;
-   email: string;
-   telefone: string;
-   dataNascimento: Date;
-
+  id: number;
+  nome: string;
+  cpf: string;
+  telefone: string;
+  endereco: string;
+  dataNascimento: Date;
+  email: string;
 }
