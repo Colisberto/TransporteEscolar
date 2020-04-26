@@ -1,0 +1,31 @@
+.tituloTela{
+  min-width: 200px;
+  max-width: 500px;
+  width: 200%;
+  left: 250px; /** jogando o conteúdo para a direita da pagina**/
+  border-radius: 50px; /** Aredondamento dos cantos do card**/
+}
+.dataInicial{
+  left: 20px; /** jogando o conteúdo para a direita da pagina**/
+}
+.dataFinal{
+  left: 300px; /** jogando o conteúdo para a direita da pagina**/
+}
+example-small-box, .example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 20px;
+}
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  height: 380px; /* Definição do Comprimento do Box*/
+  width: 600px; /*Definição da Larguga do Box*/
+}

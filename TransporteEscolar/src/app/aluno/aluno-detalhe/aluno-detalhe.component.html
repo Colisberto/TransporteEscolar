@@ -1,0 +1,46 @@
+<!-- Componente destinado ao formulário de preenchimento dos dados para gravar em Banco-->
+
+<div class="card">
+  <div class="card-header">
+    Manutenção de Alunos:
+  </div>
+  <div class="card-body">
+    <div class="card-container">
+      <div>
+        <form #formUsuario="ngForm" (ngSubmit)="onSubmit(formUsuario)" class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Nome</mat-label>
+            <input type="text" matInput placeholder="Ex. João" [(ngModel)]="aluno.nome" name="nome">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>CPF</mat-label>
+            <input matInput placeholder="Ex.999.999.999-99" [(ngModel)]="aluno.cpf" name="cpf">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Telefone</mat-label>
+            <input matInput placeholder="Ex. (62)98888-8888" [(ngModel)]="aluno.telefone" name="telefone">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Ex. (62)98888-8888" [(ngModel)]="aluno.email" name="email">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <hr>
+          <button mat-button type="submit" class="btn btn-primary">Salvar</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

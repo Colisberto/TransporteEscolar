@@ -1,0 +1,117 @@
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+/*.card{
+  margin: 0;
+  background-color: #eff2f5;
+}
+
+/**.tituloTela{
+  min-width: 200px;
+  max-width: 500px;
+  width: 200%;
+  left: 390px; /** jogando o conteúdo para a direita da pagina
+  margin: 16px;
+  padding: 16px;
+  border-radius: 50px; Aredondamento dos cantos do card
+}
+
+.card-container{
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  left: 390px; jogando o conteúdo para a direita da pagina
+
+}
+
+.formAluno {
+  min-width: 300px;
+  max-width: 500px;
+  width: 300%;
+
+}
+
+.formFildAluno {
+  width: 100%;
+  left: 400px;  jogando o conteúdo para a direita da pagina
+;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+
+#body-row {
+  margin-left:0;
+  margin-right:0;
+}
+#sidebar-container {
+  min-height: 100vh;
+  background-color: #333;
+  padding: 0;
+}
+
+
+.sidebar-expanded {
+  width: 230px;
+}
+.sidebar-collapsed {
+  width: 60px;
+}
+
+
+#sidebar-container .list-group a {
+  height: 50px;
+  color: white;
+}
+
+
+#sidebar-container .list-group .sidebar-submenu a {
+  height: 45px;
+  padding-left: 30px;
+}
+.sidebar-submenu {
+  font-size: 0.9rem;
+}
+
+
+.sidebar-separator-title {
+  background-color: #333;
+  height: 35px;
+}
+.sidebar-separator {
+  background-color: #333;
+  height: 25px;
+}
+.logo-separator {
+  background-color: #333;
+  height: 60px;
+}
+
+
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+}
+
+#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+
+
+.btnCadastrarAlterar{
+  left: 800px; /** jogando o conteúdo para a direita da pagina
+}
+**/

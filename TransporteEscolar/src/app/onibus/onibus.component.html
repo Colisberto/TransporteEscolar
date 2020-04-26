@@ -1,0 +1,58 @@
+<!-- Formulário para destinada a carregar os dados de alunos cadastrados -->
+<div class="card">
+  <div class="card-header">
+    Listagem de Veículos:
+  </div>
+  <div class="card-body">
+    <div class="content">
+      <table mat-table [dataSource] ="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Nome">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Placa </th>
+          <td mat-cell *matCellDef="let onibus"> {{onibus.placa}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="CPF">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Modelo </th>
+          <td mat-cell *matCellDef="let onibus"> {{onibus.modelo}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Telefone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ano Fabricação </th>
+          <td mat-cell *matCellDef="let onibus"> {{onibus.anoFabricacao}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Endereço">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Qtd Acentos </th>
+          <td mat-cell *matCellDef="let onibus"> {{onibus.qtdAcentos}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Ações">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
+          <td mat-cell *matCellDef="let onibus">
+            <button mat-button (click)="editar(onibus)">Editar</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+
+  </div>
+  <div class="container">
+    <a routerLink="/onibusDetalhe">
+      <button mat-fab color="primary" >
+        <mat-icon>add</mat-icon>
+      </button>
+    </a>
+  </div>
+
+</div>
+

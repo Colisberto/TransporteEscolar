@@ -1,0 +1,37 @@
+<!-- Componente destinado ao formulário de preenchimento dos dados para gravar em Banco-->
+<div class="card">
+  <div class="card-header">
+    Manutenção de Veículos:
+  </div>
+  <div class="card-body">
+    <div class="card-container">
+      <div>
+        <form #formUsuario="ngForm" (ngSubmit)="onSubmit(formUsuario)" class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Placa</mat-label>
+            <input type="text" matInput placeholder="Ex. KGD-5518" [(ngModel)]="onibus.placa" name="placa">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Modelo</mat-label>
+            <input matInput placeholder="Ex. Ducato " [(ngModel)]="onibus.modelo" name="modelo">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Qtd Acentos</mat-label>
+            <input matInput placeholder="Ex. 10" [(ngModel)]="onibus.qtdAcentos" name="qtdAcentos">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Ano Fabricação</mat-label>
+            <input matInput placeholder="Ex. 2002/2003" [(ngModel)]="onibus.anoFabricacao" name="anoFabricacao">
+          </mat-form-field>
+
+          <hr>
+          <button mat-button type="submit" class="btn btn-primary">Salvar</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

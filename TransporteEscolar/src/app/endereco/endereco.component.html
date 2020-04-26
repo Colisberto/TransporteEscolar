@@ -1,0 +1,34 @@
+<mat-card class="tituloTela">
+  Cadastrar Endereço Aluno
+</mat-card>
+<div>
+  <form #formUsuario="ngForm" (ngSubmit)="onSubmit(formUsuario)" class="formEndereco">
+    <mat-form-field class="matFormEndereco">
+      <mat-label>Cidade</mat-label>
+      <input matInput placeholder="Ex. João" [(ngModel)]="endereco.cidade" name="cidade">
+    </mat-form-field>
+
+    <mat-form-field class="matFormEndereco">
+      <mat-label>Endereço</mat-label>
+      <input matInput placeholder="Ex.999.999.999-99" [(ngModel)]="endereco.endereco" name="endereco">
+    </mat-form-field>
+
+    <mat-form-field class="matFormEndereco">
+      <mat-label>Bairro</mat-label>
+      <input matInput placeholder="Ex. (62)98888-8888" [(ngModel)]="endereco.bairro" name="bairro">
+    </mat-form-field>
+
+    <mat-form-field class="matFormEndereco">
+      <mat-label>Cep</mat-label>
+      <input matInput placeholder="Ex. Rua teste setor central" [(ngModel)]="endereco.cep" name="cep">
+    </mat-form-field>
+
+    <mat-form-field class="matFormEndereco">
+      <mat-label>UF</mat-label>
+      <input matInput placeholder="Ex. Rua teste setor central" [(ngModel)]="endereco.uf" name="uf">
+    </mat-form-field>
+
+    <button class="btnCadastrarAlterar" mat-raised-button color="primary">Cadastrar</button>
+
+  </form>
+</div>

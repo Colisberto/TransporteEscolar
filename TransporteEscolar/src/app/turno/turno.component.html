@@ -1,0 +1,40 @@
+<mat-card class="tituloTela">
+  Cadastrar Turnos e Períodos
+</mat-card>
+
+<mat-tab-group dynamicHeight>
+
+  <mat-tab label="Matutino">
+    <div>
+      <mat-form-field class="dataInicial">
+        <mat-label>Data Inicial do Turno</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!--example-large-box : Box de vavegação com as opções-->
+    <div class="example-large-box mat-elevation-z20">
+
+      Large content
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Vespertino">
+    <!--example-large-box : Box de vavegação com as opções-->
+    <div class="example-large-box mat-elevation-z20">
+      Large content
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Noturno">
+    <!--example-large-box : Box de vavegação com as opções-->
+    <div class="example-large-box mat-elevation-z20">
+      Large content
+    </div>
+  </mat-tab>
+
+</mat-tab-group>
+
+
