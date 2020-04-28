@@ -1,14 +1,9 @@
-export class OnibusODT{
+import { AlunoODT} from '../aluno/alunoODT';
 
-  public placa: string;
-  public modelo: string;
-  public qtdAcentos: string;
-  public anoFabricacao: string;
+export interface OnibusODT{
 
-  constructor( placa: string, modelo: string, qtdAcentos: string, anoFabricacao: string) {
-    this.placa = placa;
-    this.modelo = modelo;
-    this.qtdAcentos = qtdAcentos;
-    this.anoFabricacao = anoFabricacao;
-  }
+ placa: string;
+ modelo: string;
+ qtdAcentos: string;
+ anoFabricacao: string;
 }
