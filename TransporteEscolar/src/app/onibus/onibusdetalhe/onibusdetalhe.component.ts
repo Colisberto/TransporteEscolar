@@ -1,13 +1,13 @@
 import {AfterContentChecked, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {OnibusODT} from '../onibusODT';
-import { AlunoODT} from '../../aluno/alunoODT';
+import {AlunoODT} from '../../aluno/alunoODT';
 import {NgForm} from '@angular/forms';
-import { MatTable, MatTableDataSource} from '@angular/material/table';
-import { SelectionModel} from '@angular/cdk/collections';
-import {ActivatedRoute, Router} from '@angular/router';
-import { Subscription} from 'rxjs';
-import { OnibusService} from '../onibus.service';
-import { MatSort} from '@angular/material/sort';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
+import {SelectionModel} from '@angular/cdk/collections';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {OnibusService} from '../onibus.service';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-onibus-detalhe',
@@ -41,7 +41,7 @@ export class OnibusDetalheComponent implements OnInit, AfterViewInit, AfterConte
           }, error => {console.error(error); });
         } else {
           this.onibus = {
-            id: null, placa: '', modelo: '', ano: '',
+            id: null, placa: '', modelo: '', anoFabricacao: '', qtdAcentos: '',
             alunos: [],
           };
           this.dataSource = new MatTableDataSource<AlunoODT>([]);

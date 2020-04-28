@@ -1,9 +1,11 @@
 /*Classe criada para simular a consulta de dados em uma tabela*/
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {OnibusODT} from './onibusODT';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {AlunoODT} from '../aluno/alunoODT';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {getIifeBody} from '@angular/compiler-cli/ngcc/src/host/esm5_host';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,7 @@ export class OnibusService {
   }
 
 
-  getTurmaByID(id: number): Observable<OnibusODT> {
+  getOnibusByID(id: number): Observable<OnibusODT> {
     const url = 'http://localhost:9000/api/onibus/get/';
     // const params = new HttpParams().set("id" = id);
     return this.http.get <OnibusODT>(url + id);
