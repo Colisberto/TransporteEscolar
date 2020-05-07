@@ -26,7 +26,9 @@ export class OnibusDetalheComponent implements OnInit, AfterViewInit, AfterConte
   public onibus: OnibusODT;
   @ViewChild(MatSort,{ static: false}) sort: MatSort;
   @ViewChild(MatTable,{ static: false}) table: MatTable<any>;
+
   inscricao: Subscription;
+
   displayedColumns: string[] = ['Selecione', 'Nome', 'CPF', 'Telefone', 'Endereço', 'Nascimento'];
   dataSource: MatTableDataSource<AlunoODT>;
   selection = new SelectionModel<AlunoODT>(true, []);
@@ -105,7 +107,7 @@ export class OnibusDetalheComponent implements OnInit, AfterViewInit, AfterConte
     this.onibusService.delete(onibus);
     // this.router.navigate(['/turma/']);
     //  f.setValue("");
-    f.form.reset();
+    f.form.reset(); // limpa o formulário.
   }
 
 }

@@ -70,11 +70,16 @@ export class AlunoService {
     const url = 'http://localhost:9000/api/aluno/all';
     return this.http.get <AlunoODT[]>(url);
   }
+  getAlunoByID(id: number): Observable<AlunoODT> {
+    const url = 'http://localhost:9000/api/aluno/get/';
+    // const params = new HttpParams().set("id" = id);
+    return this.http.get<AlunoODT>(url + id);
+  }
 
   saveAluno(aluno: AlunoODT): Observable<AlunoODT> {
     const url = 'http://localhost:9000/api/aluno/add';
     // @ts-ignore
-    return this.http.post<AlunoDTO>(url, aluno).pipe(
+    return this.http.post<AlunoODT>(url, aluno).pipe(
       catchError(this.handleError)
     ).subscribe((data) => {
       console.log(data);
@@ -84,7 +89,7 @@ export class AlunoService {
   updateAluno(aluno: AlunoODT): Observable<AlunoODT> {
     const url = 'localhost:9000/api/aluno/edit';
     // @ts-ignore
-    return this.http.post<AlunoDTO>(url, aluno).pipe(
+    return this.http.post<AlunoODT>(url, aluno).pipe(
       catchError(this.handleError)
     ).subscribe((data) => {
       console.log(data);
