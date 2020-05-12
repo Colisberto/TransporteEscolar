@@ -1,14 +1,11 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-  left: 390px; /** jogando o conteúdo para a direita da pagina**/
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
 }
-
-.example-full-width {
-  width: 100%;
-  left: 390px; /** jogando o conteúdo para a direita da pagina**/
+.signin-content {
+  padding: 60px 1rem;
 }
-.login{
-  left: 820px; /** jogando o conteúdo para a direita da pagina**/
+.full-width-input {
+  width: 100%;
 }

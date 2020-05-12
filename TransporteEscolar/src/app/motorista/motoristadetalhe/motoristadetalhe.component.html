@@ -1,5 +1,8 @@
 <!-- Componente destinado ao formulário de preenchimento dos dados para gravar em Banco-->
 
+<div class="alert alert-danger" role="alert" style="display: none">
+  This is a danger alert—check it out!
+</div>
 <div class="card">
   <div class="card-header">
     Manutenção de Motoristas:
@@ -7,36 +10,62 @@
   <div class="card-body">
     <div class="card-container">
       <div>
-        <form #formUsuario="ngForm" (ngSubmit)="onSubmit(formUsuario)" class="example-form">
+        <form [formGroup]="formMotorista" (ngSubmit)="onSubmit()" class="example-form">
+          <div style="display: none">
+            <mat-form-field class="example-full-width">
+              <mat-label>ID</mat-label>
+              <input matInput formControlName="id">
+            </mat-form-field>
+          </div>
           <mat-form-field class="example-full-width">
             <mat-label>Nome</mat-label>
-            <input type="text" matInput placeholder="Ex. João" [(ngModel)]="motorista.nome" name="nome">
+            <input type="text" matInput placeholder="Ex. João"  formControlName="nome"
+                   pattern="[a-zA-Z ]*" required>
+            <mat-error *ngIf="isFieldInvalid('nome')">
+              Nome obrigatório, use somente letras.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>CPF</mat-label>
-            <input matInput placeholder="Ex.999.999.999-99" [(ngModel)]="motorista.cpf" name="cpf">
+            <input matInput placeholder="somente números"  formControlName="cpf"
+                   simpleMask="999.999.999-99" [clearIfNotMatch]="true" required>
+            <mat-error *ngIf="isFieldInvalid('cpf')">
+              CPF obrigatório, use somente números.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Telefone</mat-label>
-            <input matInput placeholder="Ex. (62)98888-8888" [(ngModel)]="motorista.telefone" name="telefone">
+            <input matInput placeholder="Ex. (62)98888-8888"  formControlName="telefone" simpleMask="(62)99999-9999" [clearIfNotMatch]="true">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Ex. (62)98888-8888" [(ngModel)]="motorista.email" name="email">
+            <mat-label>Endereço</mat-label>
+            <input matInput placeholder="Ex. Rua teste setor central" formControlName="endereco">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" placeholder="email@email.com" formControlName="email" required >
+            <mat-error *ngIf="isFieldInvalid('email')">
+              email obrigatório.
+            </mat-error>
+            <mat-error *ngIf="isFieldInvalid('email')">
+              email inválido.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Data de Nascimento</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" formControlName="dataNascimento">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
           <hr>
           <button mat-button type="submit" class="btn btn-primary">Salvar</button>
+
 
         </form>
       </div>

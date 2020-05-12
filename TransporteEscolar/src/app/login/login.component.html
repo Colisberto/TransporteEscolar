@@ -1,16 +1,22 @@
-
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Informe o Usuário</mat-label>
-    <input matInput placeholder="Ex. Paulo" >
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Informe a Senha</mat-label>
-    <input id="senha" type="password" matInput placeholder="Ex. 123123">
-  </mat-form-field>
-
-  <button class="login" mat-raised-button color="accent">Login</button>
-
-</form>
-
-
+<div class="signin-content">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+        <p>Por favor efetue login para continuar</p>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Usuário" formControlName="userName" required>
+          <mat-error *ngIf="isFieldInvalid('userName')">
+            Por favor informe o usuário
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Senha" formControlName="password" required>
+          <mat-error *ngIf="isFieldInvalid('userName')">
+            Por favor informe a senha
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

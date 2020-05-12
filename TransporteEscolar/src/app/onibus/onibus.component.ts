@@ -4,7 +4,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {OnibusService} from './onibus.service';
 import {OnibusODT} from './onibusODT';
-import { AlunoODT} from '../aluno/alunoODT';
 import {ActivatedRoute, Router} from '@angular/router';
 
 

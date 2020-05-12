@@ -1,41 +1,40 @@
-<!-- Formulário para destinada a carregar os dados de alunos cadastrados -->
-<<div class="card">
+<div class="card">
   <div class="card-header">
-    Listagem de Motorista:
+    Listagem de Motoristas:
   </div>
   <div class="card-body">
     <div class="content">
-      <table mat-table [dataSource] ="dataSource" matSort class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort class="table table-striped">
 
         <!-- Position Column -->
         <ng-container matColumnDef="Nome">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Nome </th>
           <td mat-cell *matCellDef="let motorista"> {{motorista.nome}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="CPF">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> CPF </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> CPF </th>
           <td mat-cell *matCellDef="let motorista"> {{motorista.cpf}} </td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="Telefone">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefone </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Telefone </th>
           <td mat-cell *matCellDef="let motorista"> {{motorista.telefone}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="Endereço">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-          <td mat-cell *matCellDef="let motorista"> {{motorista.email}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Endereço </th>
+          <td mat-cell *matCellDef="let motorista"> {{motorista.endereco}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="Ações">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
+          <th mat-header-cell *matHeaderCellDef > Ações </th>
           <td mat-cell *matCellDef="let motorista">
-            <button mat-button (click)="editar(motorista)">Editar</button>
+            <button mat-button class="btn btn-primary" (click)="editar(motorista)">Editar</button>
           </td>
         </ng-container>
 

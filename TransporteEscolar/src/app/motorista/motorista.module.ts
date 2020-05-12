@@ -4,7 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
@@ -13,6 +13,8 @@ import {MotoristaComponent} from './motorista.component';
 import {MotoristaRoutingModule} from './motorista.routing.module';
 import {MotoristaService} from './motorista.service';
 import {MotoristaDetalheComponent} from './motoristadetalhe/motoristadetalhe.component';
+import {MatSortModule} from '@angular/material/sort';
+import {SimpleMaskDirective, SimpleMaskModule, SimpleMaskPipe} from 'ngx-ion-simple-mask';
 
 
 
@@ -22,7 +24,6 @@ import {MotoristaDetalheComponent} from './motoristadetalhe/motoristadetalhe.com
     MotoristaComponent
   ],
   imports: [
-    BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
     MatInputModule,
@@ -30,9 +31,12 @@ import {MotoristaDetalheComponent} from './motoristadetalhe/motoristadetalhe.com
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MotoristaRoutingModule,
     MatIconModule,
     MatTableModule,
-    MotoristaRoutingModule
+    MatSortModule,
+    SimpleMaskModule,
+    ReactiveFormsModule
   ],
   providers: [
     MotoristaService

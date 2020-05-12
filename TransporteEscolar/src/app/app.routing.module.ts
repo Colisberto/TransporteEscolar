@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import {AuthGuard} from './auth/auth.guard';
-import {AlunoComponent} from './aluno/aluno.component';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AlunoComponent } from './aluno/aluno.component';
 
 
 const appRouts: Routes = [

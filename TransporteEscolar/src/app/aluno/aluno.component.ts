@@ -8,6 +8,9 @@ import {MatSort} from '@angular/material/sort';
 import {AlunoService} from './aluno.service';
 import {Router} from '@angular/router';
 
+
+
+
 @Component({
   selector: 'app-aluno',
   templateUrl: './aluno.component.html',
@@ -28,7 +31,6 @@ import {Router} from '@angular/router';
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ],
 })
-
 export class AlunoComponent implements OnInit {
 
   constructor(private alunoService: AlunoService,
@@ -42,7 +44,6 @@ export class AlunoComponent implements OnInit {
 
   alunos: AlunoODT[];
 
-
   ngOnInit(): void {
     this.alunoService.list().subscribe(dados => {
       this.alunos = dados;
@@ -52,7 +53,6 @@ export class AlunoComponent implements OnInit {
   }
 
   editar(aluno: AlunoODT) {
-    console.log(aluno);
     this.router.navigate(['/alunoEdit/', aluno.id]);
   }
 }

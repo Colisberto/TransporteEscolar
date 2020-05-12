@@ -1,12 +1,14 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter , MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-} from '@angular/material-moment-adapter';
+import {MotoristaODT} from './motoristaODT';
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MotoristaService} from './motorista.service';
-import {MotoristaODT} from './motoristaODT';
+import {Router} from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-motorista',
@@ -28,39 +30,28 @@ import {MotoristaODT} from './motoristaODT';
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ],
 })
-
 export class MotoristaComponent implements OnInit {
 
-  constructor(private motoristaService: MotoristaService) { }
+  constructor(private motoristaService: MotoristaService,
+              private router: Router) {}
 
-  motoristas: MotoristaODT[] = this.motoristaService.getMotoristas();
-
-  motorista: MotoristaODT =  {
-    cpf: null,
-    nome: null,
-    email: null,
-    telefone: null,
-    dataNascimento: null
-
-  };
-  displayedColumns: string[] = ['Nome', 'CPF', 'Telefone', 'Endereço', 'Ações'];
-  dataSource = new MatTableDataSource(this.motoristas);
-
+  dataSource: MatTableDataSource<MotoristaODT>;
   @ViewChild
   (MatSort, {static: true}) sort: MatSort;
 
+  displayedColumns: string[] = ['Nome', 'CPF', 'Telefone', 'Endereço'];
+
+  motorista: MotoristaODT[];
+
   ngOnInit(): void {
-    this.dataSource.sort = this.sort;
+    this.motoristaService.list().subscribe(dados => {
+      this.motorista = dados;
+      this.dataSource = new MatTableDataSource(this.motorista);
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  onSubmit(f: NgForm) {
-    this.motorista = (f.value);
-    console.log(this.motorista);  // { first: '', last: '' }
-    console.log(f.valid);  // false
-    console.log(f.value);
-  }
   editar(motorista: MotoristaODT) {
-    console.log(motorista);
+    this.router.navigate(['/motorisraEdit/', motorista.id]);
   }
 }
-
