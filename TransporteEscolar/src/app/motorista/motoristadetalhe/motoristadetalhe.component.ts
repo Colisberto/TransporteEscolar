@@ -9,9 +9,9 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
-  selector: 'app-motorista-detalhe',
-  templateUrl: './motorista-detalhe.component.html',
-  styleUrls: ['./motorista-detalhe.component.css'],
+  selector: 'app-motoristadetalhe',
+  templateUrl: './motoristadetalhe.component.html',
+  styleUrls: ['./motoristadetalhe.component.css'],
   providers: [
     // The locale would typically be provided on the root module of your application. We do it at
     // the component level here, due to limitations of our example generation script.
@@ -34,7 +34,7 @@ export class MotoristaDetalheComponent implements OnInit {
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
-  formMotorista: FormGroup;
+  formUsuario: FormGroup;
 
   private formSubmitAttempt: boolean;
 
@@ -49,7 +49,7 @@ export class MotoristaDetalheComponent implements OnInit {
         if (id) {
           this.motoristaService.getMotoristaByID(id).subscribe(dados => {
             this.motorista = dados;
-            this.formMotorista = this.fb.group({     // {5}
+            this.formUsuario = this.fb.group({     // {5}
               id: [this.motorista.id],
               nome: [this.motorista.nome, Validators.required],
               cpf: [this.motorista.cpf, Validators.required],
@@ -58,7 +58,7 @@ export class MotoristaDetalheComponent implements OnInit {
               email: [this.motorista.email, [Validators.required, Validators.email]],
               dataNascimento: [this.motorista.dataNascimento]
             });
-            console.log(this.formMotorista);
+            console.log(this.formUsuario);
           }, error => {console.error(error); });
         } else {
           this.motorista = {
@@ -70,7 +70,7 @@ export class MotoristaDetalheComponent implements OnInit {
             dataNascimento: null,
             email: ''
           };
-          this.formMotorista = this.fb.group({     // {5}
+          this.formUsuario = this.fb.group({     // {5}
             id: [this.motorista.id],
             nome: [this.motorista.nome, Validators.required],
             cpf: [this.motorista.cpf, Validators.required],
@@ -84,8 +84,8 @@ export class MotoristaDetalheComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.formMotorista.valid) {
-      this.motorista = (this.formMotorista.value);
+    if (this.formUsuario.valid) {
+      this.motorista = (this.formUsuario.value);
       console.log(this.motorista);
       if (this.motorista.id === null) {
         this.motoristaService.saveMotorista(this.motorista);
@@ -99,8 +99,8 @@ export class MotoristaDetalheComponent implements OnInit {
 
   isFieldInvalid(field: string) { // {6}
     return (
-      (!this.formMotorista.get(field).valid && this.formMotorista.get(field).touched) ||
-      (this.formMotorista.get(field).untouched && this.formSubmitAttempt) || (this.formMotorista.get(field).errors)
+      (!this.formUsuario.get(field).valid && this.formUsuario.get(field).touched) ||
+      (this.formUsuario.get(field).untouched && this.formSubmitAttempt) || (this.formUsuario.get(field).errors)
     );
   }
 }
