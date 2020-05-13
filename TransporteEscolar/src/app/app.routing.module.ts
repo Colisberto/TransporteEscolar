@@ -6,8 +6,8 @@ import { AlunoComponent } from './aluno/aluno.component';
 
 
 const appRouts: Routes = [
-  { path: '', component: AlunoComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent }
+  { path: '', component: AlunoComponent, canActivate: [AuthGuard] }, /* define qual tela a ser carregada após Login realizado*/
+  { path: 'login', component: LoginComponent } /* ao inserir o endereço a tela principal a ser carregada na rota sempre será a de login*/
 ];
 
 

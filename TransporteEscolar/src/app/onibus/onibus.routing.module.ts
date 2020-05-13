@@ -3,11 +3,12 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {OnibusComponent} from './onibus.component';
 import {OnibusDetalheComponent} from './onibusdetalhe/onibusdetalhe.component';
+import {AuthGuard} from '../auth/auth.guard';
 
 // Criação da rota para formulário onibus
 const onibusRouts: Routes = [
-  {path: 'onibus', component: OnibusComponent},
-  {path: 'onibusDetalhe', component: OnibusDetalheComponent},
+  {path: 'onibus', component: OnibusComponent, canActivate: [AuthGuard]},
+  {path: 'onibusDetalhe', component: OnibusDetalheComponent, canActivate: [AuthGuard]},
 
 ];
 
