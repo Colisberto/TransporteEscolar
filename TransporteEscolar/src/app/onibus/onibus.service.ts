@@ -1,7 +1,6 @@
 /*Classe criada para simular a consulta de dados em uma tabela*/
 import {Injectable} from '@angular/core';
 import {OnibusODT} from './onibusODT';
-import {AlunoODT} from '../aluno/alunoODT';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
