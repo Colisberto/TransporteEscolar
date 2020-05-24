@@ -8,7 +8,7 @@ import {AuthGuard} from '../auth/auth.guard';
 /*Criação da rota para formulário aluno*/
 const alunoRouts: Routes = [
   {path: 'aluno', component: AlunoComponent, canActivate: [AuthGuard]},
-  {path: 'alunoDetalhe', component: AlunoDetalheComponent, canActivate: [AuthGuard]},
+  {path: 'alunoDetalhe', component: AlunoDetalheComponent,  canActivate: [AuthGuard]},
   {path: 'alunoEdit/:id', component: AlunoDetalheComponent, canActivate: [AuthGuard]},
 
 ];

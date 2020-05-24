@@ -8,11 +8,13 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app.routing.module';
 
+
 import {OnibusModule} from './onibus/onibus.module';
 import {AlunoModule} from './aluno/aluno.module';
 import {TurnoModule} from './turno/turno.module';
 import {LoginModule} from './login/login.module';
 import {MotoristaModule} from './motorista/motorista.module';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -29,8 +31,8 @@ import {MotoristaModule} from './motorista/motorista.module';
     MotoristaModule,
     OnibusModule,
     TurnoModule,
-    AppRoutingModule
-
+    AppRoutingModule,
+    HttpClientModule
   ],
 
   providers: [],

@@ -7,7 +7,7 @@ import {AuthGuard} from '../auth/auth.guard';
 
 // Criação da rota para formulário onibus
 const onibusRouts: Routes = [
-  {path: 'onibus', component: OnibusComponent, canActivate: [AuthGuard]},
+  {path: 'onibus', component: OnibusComponent , canActivate: [AuthGuard]},
   {path: 'onibusDetalhe', component: OnibusDetalheComponent, canActivate: [AuthGuard]},
 
 ];
