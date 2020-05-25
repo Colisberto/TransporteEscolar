@@ -1,31 +1,90 @@
-.tituloTela{
-  min-width: 200px;
+.titulo{
+  text-align: center;
+  text-transform: uppercase;
+
+
+}
+.cardtitulo {
+  max-width: 900px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+
+.example-form {
+  min-width: 150px;
   max-width: 500px;
-  width: 200%;
-  left: 250px; /** jogando o conteúdo para a direita da pagina**/
-  border-radius: 50px; /** Aredondamento dos cantos do card**/
-}
-.dataInicial{
-  left: 20px; /** jogando o conteúdo para a direita da pagina**/
-}
-.dataFinal{
-  left: 300px; /** jogando o conteúdo para a direita da pagina**/
-}
-example-small-box, .example-large-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 16px;
-  padding: 16px;
-  border-radius: 20px;
+  width: 100%;
 }
 
-.example-small-box {
-  height: 100px;
-  width: 100px;
+.example-full-width {
+  width: 100%;
 }
 
-.example-large-box {
-  height: 380px; /* Definição do Comprimento do Box*/
-  width: 600px; /*Definição da Larguga do Box*/
+
+#body-row {
+  margin-left:0;
+  margin-right:0;
+}
+#sidebar-container {
+  min-height: 100vh;
+  background-color: #333;
+  padding: 0;
+}
+
+/* Sidebar sizes when expanded and expanded */
+.sidebar-expanded {
+  width: 230px;
+}
+.sidebar-collapsed {
+  width: 60px;
+}
+
+/* Menu item*/
+#sidebar-container .list-group a {
+  height: 50px;
+  color: white;
+}
+
+/* Submenu item*/
+#sidebar-container .list-group .sidebar-submenu a {
+  height: 45px;
+  padding-left: 30px;
+}
+.sidebar-submenu {
+  font-size: 0.9rem;
+}
+
+/* Separators */
+.sidebar-separator-title {
+  background-color: #333;
+  height: 35px;
+}
+.sidebar-separator {
+  background-color: #333;
+  height: 25px;
+}
+.logo-separator {
+  background-color: #333;
+  height: 60px;
+}
+
+/* Closed submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+}
+/* Opened submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
 }

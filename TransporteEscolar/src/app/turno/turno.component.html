@@ -1,85 +1,165 @@
-<mat-card class="tituloTela">
+<mat-card  class="cardtitulo">
+  <div class=" titulo ">
   Cadastrar Turnos e Períodos
-</mat-card>
+  </div>
+</mat-card >
 
 <mat-tab-group>
-
-  <div>
-    <mat-tab label="Matutino"> Matutino
-
-      <div class="card">
-        <div class="card-header">
-          Manutenção de Alunos:
+  <mat-tab label="Matutino"> Vespertino
+    <mat-card>Cadastrar turno
+    <mat-card-content>
+      <form [formGroup]="formTurno" (ngSubmit)="onSubmit()" class="example-form">
+        <div style="display: none">
+          <mat-form-field class="example-full-width">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id">
+          </mat-form-field>
         </div>
-        <div class="card-body">
-          <div class="card-container">
-            <div>
-              <form [formGroup]="formTurno" (ngSubmit)="onSubmit()" class="example-form">
-                <div style="display: none">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>ID</mat-label>
-                    <input matInput formControlName="id">
-                  </mat-form-field>
-                </div>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Nome</mat-label>
-                  <input type="text" matInput placeholder="Ex. João"  formControlName="nome"
-                         pattern="[a-zA-Z ]*" required>
-                  <mat-error *ngIf="isFieldInvalid('nome')">
-                    Nome obrigatório, use somente letras.
-                  </mat-error>
-                </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Turno</mat-label>
+          <input type="text" matInput placeholder formControlName="turno"
+                 pattern="[a-zA-Z ]*" required>
+          <mat-error *ngIf="isFieldInvalid('turno')">
+            Turno obrigatório, use somente letras.
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                  <mat-label>CPF</mat-label>
-                  <input matInput placeholder="somente números"  formControlName="cpf"
-                         simpleMask="999.999.999-99" [clearIfNotMatch]="true" required>
-                  <mat-error *ngIf="isFieldInvalid('cpf')">
-                    CPF obrigatório, use somente números.
-                  </mat-error>
-                </mat-form-field>
+      <!--  <mat-form-field>
+          <mat-label>Inicio Turno</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dtInicTurno">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                  <mat-label>Telefone</mat-label>
-                  <input matInput placeholder="Ex. (62)98888-8888"  formControlName="telefone" simpleMask="(62)99999-9999" [clearIfNotMatch]="true">
-                </mat-form-field>
+        <mat-form-field>
+          <mat-label>Final Turno</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dtInicTurno">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        -->
 
-                <mat-form-field class="example-full-width">
-                  <mat-label>Endereço</mat-label>
-                  <input matInput placeholder="Ex. Rua teste setor central" formControlName="endereco">
-                </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora do Embarque</mat-label>
+          <input matInput placeholder="07:00" formControlName="horarioEmbarque">
+        </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                  <mat-label>E-mail</mat-label>
-                  <input matInput type="email" placeholder="email@email.com" formControlName="email" required >
-                  <mat-error *ngIf="isFieldInvalid('email')">
-                    email obrigatório.
-                  </mat-error>
-                  <mat-error *ngIf="isFieldInvalid('email')">
-                    email inválido.
-                  </mat-error>
-                </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora do Desembarque</mat-label>
+          <input matInput placeholder="12:30" formControlName="horarioDesembarque">
+        </mat-form-field>
 
-                <mat-form-field>
-                  <mat-label>Data de Nascimento</mat-label>
-                  <input matInput [matDatepicker]="picker" formControlName="dataNascimento">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
+        <hr>
+        <button mat-button type="submit" class="btn btn-primary">Salvar</button>
 
-                <hr>
-                <button mat-button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </mat-card-content>
+    </mat-card>
 
+  </mat-tab>
+  <mat-tab label="Vespertino"> Vespertino
+    <mat-card>Cadastrar turno
 
-              </form>
-            </div>
-          </div>
+      <form [formGroup]="formTurno" (ngSubmit)="onSubmit()" class="example-form">
+        <div style="display: none">
+          <mat-form-field class="example-full-width">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id">
+          </mat-form-field>
         </div>
-      </div>
-    </mat-tab>
-  </div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Turno</mat-label>
+          <input type="text" matInput placeholder formControlName="turno"
+                 pattern="[a-zA-Z ]*" required>
+          <mat-error *ngIf="isFieldInvalid('turno')">
+            Turno obrigatório, use somente letras.
+          </mat-error>
+        </mat-form-field>
 
+         <mat-form-field>
+            <mat-label>Inicio Turno</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dtInicTurno">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <!--
+                 <mat-form-field>
+                   <mat-label>Final Turno</mat-label>
+                   <input matInput [matDatepicker]="picker" formControlName="dtInicTurno">
+                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                   <mat-datepicker #picker></mat-datepicker>
+                 </mat-form-field>
+                 -->
 
-  <mat-tab label="Vespertino"> Vespertino </mat-tab>
-  <mat-tab label="Noturno"> Noturno </mat-tab>
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora do Embarque</mat-label>
+          <input matInput placeholder="13:00" formControlName="horarioEmbarque">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora do Desembarque</mat-label>
+          <input matInput placeholder="18:30" formControlName="horarioDesembarque">
+        </mat-form-field>
+
+        <hr>
+        <button mat-button type="submit" class="btn btn-primary">Salvar</button>
+
+      </form>
+
+    </mat-card>
+
+  </mat-tab>
+  <mat-tab label="Noturno"> Noturno
+
+    <mat-card>Cadastrar turno
+
+      <form [formGroup]="formTurno" (ngSubmit)="onSubmit()" class="example-form">
+        <div style="display: none">
+          <mat-form-field class="example-full-width">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id">
+          </mat-form-field>
+        </div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Turno</mat-label>
+          <input type="text" matInput placeholder formControlName="turno"
+                 pattern="[a-zA-Z ]*" required>
+          <mat-error *ngIf="isFieldInvalid('turno')">
+            Turno obrigatório, use somente letras.
+          </mat-error>
+        </mat-form-field>
+        <!--
+                 <mat-form-field>
+                   <mat-label>Inicio Turno</mat-label>
+                   <input matInput [matDatepicker]="picker" formControlName="dtInicTurno">
+                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                   <mat-datepicker #picker></mat-datepicker>
+                 </mat-form-field>
+
+                         <mat-form-field>
+                           <mat-label>Final Turno</mat-label>
+                           <input matInput [matDatepicker]="picker" formControlName="dtInicTurno">
+                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                           <mat-datepicker #picker></mat-datepicker>
+                         </mat-form-field>
+                         -->
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora do Embarque</mat-label>
+          <input matInput placeholder="18:30" formControlName="horarioEmbarque">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora do Desembarque</mat-label>
+          <input matInput placeholder="22:30" formControlName="horarioDesembarque">
+        </mat-form-field>
+
+        <hr>
+        <button mat-button type="submit" class="btn btn-primary">Salvar</button>
+
+      </form>
+
+    </mat-card>
+
+  </mat-tab>
 </mat-tab-group>

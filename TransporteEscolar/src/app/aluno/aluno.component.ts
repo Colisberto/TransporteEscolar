@@ -8,9 +8,6 @@ import {MatSort} from '@angular/material/sort';
 import {AlunoService} from './aluno.service';
 import {Router} from '@angular/router';
 
-
-
-
 @Component({
   selector: 'app-aluno',
   templateUrl: './aluno.component.html',
