@@ -15,6 +15,7 @@ import {TurnoModule} from './turno/turno.module';
 import {LoginModule} from './login/login.module';
 import {MotoristaModule} from './motorista/motorista.module';
 import {HttpClientModule} from '@angular/common/http';
+import {ContatosModule} from './contatos/contatos.module';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {HttpClientModule} from '@angular/common/http';
     MotoristaModule,
     OnibusModule,
     TurnoModule,
+    ContatosModule,
     AppRoutingModule,
     HttpClientModule
   ],

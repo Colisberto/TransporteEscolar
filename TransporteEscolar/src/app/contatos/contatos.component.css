@@ -1,0 +1,33 @@
+.img-contatos img{
+  width: 70px;    /* largura da imagem */
+  height: 70px;   /*  altura da imagem  */
+  margin-top: 5px; /* margem do topo */
+}
+
+.img-facebook img{
+  width: 120px;    /* largura da imagem */
+  height: 70px;   /*  altura da imagem  */
+  margin-top: 10px; /* margem do topo */
+}
+
+.img-youtube img{
+  width: 100px;    /* largura da imagem */
+  height: 40px;   /*  altura da imagem  */
+  margin-top: 10px; /* margem do topo */
+}
+
+.img-instagram img{
+  width: 85px;    /* largura da imagem */
+  height: 80px;   /*  altura da imagem  */
+  margin-top: 10px; /* margem do topo */
+}
+.card{
+  width:90%;
+  height:90%;
+  border:3px ;
+}
+.cardContato{
+  width:90%;
+  height:20%;
+  border:10px ;
+}
