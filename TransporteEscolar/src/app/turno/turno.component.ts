@@ -55,9 +55,9 @@ export class TurnoComponent implements OnInit {
               id: [this.turno.id],
               turno: [this.turno.turno, Validators.required],
               dtInicTurno: [this.turno.dtInicTurno, Validators.required],
-              dtFinalTurno: [this.turno.dtFinalTurno],
-              horarioEmbarque: [this.turno.horarioEmbarque],
-              horarioDesembarque:[this.turno.horarioDesembarque]
+              dtFinalTurno: [this.turno.dtFinalTurno, Validators.required],
+              horarioEmbarque: [this.turno.horarioEmbarque, Validators.required],
+              horarioDesembarque:[this.turno.horarioDesembarque, Validators.required]
             });
             console.log(this.formTurno);
           }, error => {console.error(error); });
@@ -74,9 +74,9 @@ export class TurnoComponent implements OnInit {
             id: [this.turno.id],
             turno: [this.turno.turno, Validators.required],
             dtInicTurno: [this.turno.dtInicTurno, Validators.required],
-            dtFinalTurno: [this.turno.dtFinalTurno],
-            horarioEmbarque: [this.turno.horarioEmbarque],
-            horarioDesembarque: [this.turno.horarioDesembarque]
+            dtFinalTurno: [this.turno.dtFinalTurno, Validators.required],
+            horarioEmbarque: [this.turno.horarioEmbarque, Validators.required],
+            horarioDesembarque: [this.turno.horarioDesembarque, Validators.required]
           });
         }
       });
@@ -92,8 +92,8 @@ export class TurnoComponent implements OnInit {
         this.turnoService.updateTurno(this.turno);
       }
     } else {
-
     }
+    this.formTurno.reset();
   }
 
   isFieldInvalid(field: string) { // {6}
