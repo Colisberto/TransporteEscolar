@@ -57,7 +57,7 @@ export class TurnoComponent implements OnInit {
               dtInicTurno: [this.turno.dtInicTurno, Validators.required],
               dtFinalTurno: [this.turno.dtFinalTurno, Validators.required],
               horarioEmbarque: [this.turno.horarioEmbarque, Validators.required],
-              horarioDesembarque:[this.turno.horarioDesembarque, Validators.required]
+              horarioDesembarque: [this.turno.horarioDesembarque, Validators.required]
             });
             console.log(this.formTurno);
           }, error => {console.error(error); });
@@ -80,6 +80,13 @@ export class TurnoComponent implements OnInit {
           });
         }
       });
+    this.clearFields();
+  }
+
+  clearFields() {
+    this.turno.turno = '';
+    this.turno.horarioDesembarque = '';
+    this.turno.horarioEmbarque = '';
   }
 
   onSubmit() {
@@ -93,6 +100,7 @@ export class TurnoComponent implements OnInit {
       }
     } else {
     }
+    // this.clearFields();
     this.formTurno.reset();
   }
 

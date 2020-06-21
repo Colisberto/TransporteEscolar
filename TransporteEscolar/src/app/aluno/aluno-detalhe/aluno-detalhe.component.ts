@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {AlunoODT} from '../alunoODT';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AlunoService} from '../aluno.service';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Params} from '@angular/router';
@@ -95,6 +95,7 @@ export class AlunoDetalheComponent implements OnInit {
     } else {
 
     }
+    this.formUsuario.reset();
   }
 
   isFieldInvalid(field: string) { // {6}

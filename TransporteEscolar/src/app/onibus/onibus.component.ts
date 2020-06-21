@@ -5,6 +5,8 @@ import {MatSort} from '@angular/material/sort';
 import {OnibusService} from './onibus.service';
 import {OnibusODT} from './onibusODT';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AlunoService} from '../aluno/aluno.service';
+import {AlunoODT} from '../aluno/alunoODT';
 
 
 @Component({
@@ -14,18 +16,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class OnibusComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private onibusService: OnibusService
-  ) { }
-
-  public isEditable =  false;
+  constructor(private onibusService: OnibusService,
+              private router: Router) {}
 
   dataSource: MatTableDataSource<OnibusODT>;
   @ViewChild
   (MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['Placa', 'Modelo', 'Ano', 'Acentos'];
+  displayedColumns: string[] = ['placa', 'modelo', 'ano', 'acentos', 'ações'];
 
   onibus: OnibusODT[];
 
@@ -37,11 +35,7 @@ export class OnibusComponent implements OnInit {
     });
   }
 
-
-
-  editar(onibus: OnibusODT) {
-    // this.router.navigate(['/turmaEdit/:id'],
-    //   {queryParams: turma});
-    this.router.navigate(['/onibusEdit/', onibus.id]);
+  editar(onibuss: OnibusODT) {
+    this.router.navigate(['/onibusEdit/', onibuss.id]);
   }
 }

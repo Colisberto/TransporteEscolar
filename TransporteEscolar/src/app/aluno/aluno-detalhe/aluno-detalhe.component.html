@@ -37,12 +37,20 @@
 
           <mat-form-field class="example-full-width">
             <mat-label>Telefone</mat-label>
-            <input matInput placeholder="Ex. (62)98888-8888"  formControlName="telefone" simpleMask="(62)99999-9999" [clearIfNotMatch]="true">
+            <input matInput placeholder="Ex. (62)98888-8888"  formControlName="telefone"
+                   simpleMask="(62)99999-9999" [clearIfNotMatch]="true" required>
+            <mat-error *ngIf="isFieldInvalid('telefone')">
+              Telefone obrigatório, use somente números.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Endereço</mat-label>
-            <input matInput placeholder="Ex. Rua teste setor central" formControlName="endereco">
+            <input matInput placeholder="Ex. Rua teste setor central" formControlName="endereco"
+            simpleMask="rua 15 de maio" [clearIfNotMatch]="true" required>
+            <mat-error *ngIf="isFieldInvalid('endereco')">
+              Endereço obrigatório, use somente números.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
@@ -50,9 +58,6 @@
             <input matInput type="email" placeholder="email@email.com" formControlName="email" required >
             <mat-error *ngIf="isFieldInvalid('email')">
               email obrigatório.
-            </mat-error>
-            <mat-error *ngIf="isFieldInvalid('email')">
-              email inválido.
             </mat-error>
           </mat-form-field>
 
@@ -64,8 +69,10 @@
           </mat-form-field>
 
           <hr>
-          <button mat-button type="submit" class="btn btn-primary">Salvar</button>
-
+          <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-button type="submit" mat-raised-button color="primary">Salvar</button>
+            <button mat-button type="submit" mat-raised-button color="warn">Cancelar</button>
+          </div>
 
         </form>
       </div>

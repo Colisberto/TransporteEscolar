@@ -4,11 +4,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {OnibusComponent} from './onibus.component';
 import {OnibusDetalheComponent} from './onibusdetalhe/onibusdetalhe.component';
 import {AuthGuard} from '../auth/auth.guard';
+import {AlunoDetalheComponent} from '../aluno/aluno-detalhe/aluno-detalhe.component';
 
 // Criação da rota para formulário onibus
 const onibusRouts: Routes = [
   {path: 'onibus', component: OnibusComponent , canActivate: [AuthGuard]},
   {path: 'onibusDetalhe', component: OnibusDetalheComponent, canActivate: [AuthGuard]},
+  {path: 'onibusEdit/:id', component: OnibusDetalheComponent, canActivate: [AuthGuard]},
 
 ];
 

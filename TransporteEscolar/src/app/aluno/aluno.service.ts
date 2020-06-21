@@ -8,68 +8,18 @@ import { AlunoODT} from './alunoODT';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AlunoService {
 
   constructor(private http: HttpClient) {}
 
   aluno: AlunoODT;
 
-  public alunos: AlunoODT[] = [{
-    id: 1,
-    nome: 'Murilo',
-    cpf: '111.111.111-11',
-    telefone: '(62) 3222-2222',
-    endereco: 'Rua 1 Centro',
-    dataNascimento: null,
-    email: ''
-  },
-    {
-      id: 2,
-      nome: 'Aluno2',
-      cpf: '222.222.222-22',
-      telefone: '(62) 3222-2222',
-      endereco: 'Rua 1 Centro',
-      dataNascimento: null,
-      email: ''
-    },
-    {
-      id: 3,
-      nome: 'Aluno3',
-      cpf: '333.333.333-33',
-      telefone: '(62) 3222-2222',
-      endereco: 'Rua 1 Centro',
-      dataNascimento: null,
-      email: ''
-    }
-  ];
-
-  getAluno(): AlunoODT[]{
-    return (this.alunos);
-  }
-
-  // getAlunos(): AlunoDTO[] {
-  //   // return this.alunos;
-  //   const url = '/api/aluno/all';
-  //   // return this.http.get<AlunoDTO[]>(url)
-  //   //   .subscribe(resultado);
-  //   this.subscribe((alunos: AlunoDTO[]) => {
-  //     this.cars = cars;
-  //   }
-  // }
-
-  // // Obtem todos os carros
-  // getAlunos(): Observable<AlunoDTO[]> {
-  //   const url = 'http://localhost:9000/aluno/all';
-  //   return this.http.get<AlunoDTO[]>(url)
-  //     .pipe(
-  //       retry(2),
-  //       catchError(this.handleError));
-  // }
-
   list(): Observable<AlunoODT[]> {
     const url = 'http://localhost:9000/api/aluno/all';
     return this.http.get <AlunoODT[]>(url);
   }
+
   getAlunoByID(id: number): Observable<AlunoODT> {
     const url = 'http://localhost:9000/api/aluno/get/';
     // const params = new HttpParams().set("id" = id);
@@ -87,9 +37,9 @@ export class AlunoService {
   }
 
   updateAluno(aluno: AlunoODT): Observable<AlunoODT> {
-    const url = 'localhost:9000/api/aluno/edit';
+    const url = 'http://localhost:9000/api/aluno/edit';
     // @ts-ignore
-    return this.http.post<AlunoODT>(url, aluno).pipe(
+    return this.http.put<AlunoODT>(url, aluno).pipe(
       catchError(this.handleError)
     ).subscribe((data) => {
       console.log(data);

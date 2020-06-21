@@ -1,3 +1,5 @@
+import {AlunoODT} from '../aluno/alunoODT';
+
 export interface TurnoODT{
 
   id: number;
@@ -6,4 +8,5 @@ export interface TurnoODT{
   dtFinalTurno: Date;
   horarioEmbarque: string;
   horarioDesembarque: string;
+  alunos: AlunoODT[];
 }

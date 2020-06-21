@@ -37,7 +37,7 @@ export class AlunoComponent implements OnInit {
   @ViewChild
   (MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['Nome', 'CPF', 'Telefone', 'Endereço', 'Ações'];
+  displayedColumns: string[] = ['cpf', 'nome', 'telefone', 'endereco', 'acões'];
 
   alunos: AlunoODT[];
 

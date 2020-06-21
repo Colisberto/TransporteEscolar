@@ -1,37 +1,110 @@
 <!-- Componente destinado ao formulário de preenchimento dos dados para gravar em Banco-->
-<div class="card">
+<div class="card" style="width: 100%">
   <div class="card-header">
-    Manutenção de Veículos:
+    <h2 class="card-title">Manutenção de Onibus:</h2>
   </div>
   <div class="card-body">
     <div class="card-container">
       <div>
-        <form #formUsuario="ngForm" (ngSubmit)="onSubmit(formUsuario)" class="example-form">
+        <form [formGroup]="formOnibus" (ngSubmit)="onSubmit()" class="example-form">
+          <div style="display: none">
+            <mat-form-field class="example-full-width">
+              <mat-label>ID</mat-label>
+              <input matInput  formControlName="id">
+            </mat-form-field>
+          </div>
+
           <mat-form-field class="example-full-width">
             <mat-label>Placa</mat-label>
-            <input type="text" matInput placeholder="Ex. KGD-5518" [(ngModel)]="onibus.placa" name="placa">
+            <input matInput placeholder="Ex. GKL-1586" formControlName="placa" required>
+            <mat-error *ngIf="isFieldInvalid('placa')">
+              Placa obrigatório
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Modelo</mat-label>
-            <input matInput placeholder="Ex. Ducato " [(ngModel)]="onibus.modelo" name="modelo">
+            <input matInput placeholder="Ford 1530" formControlName="modelo">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Qtd Acentos</mat-label>
-            <input matInput placeholder="Ex. 10" [(ngModel)]="onibus.qtdAcentos" name="qtdAcentos">
+            <mat-label>Ano</mat-label>
+            <input matInput placeholder="Ex. 1980 " formControlName="ano">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Ano Fabricação</mat-label>
-            <input matInput placeholder="Ex. 2002/2003" [(ngModel)]="onibus.anoFabricacao" name="anoFabricacao">
+            <mat-label>Acentos</mat-label>
+            <input matInput placeholder="Ex. 18 " formControlName="acentos">
           </mat-form-field>
-
           <hr>
           <button mat-button type="submit" class="btn btn-primary">Salvar</button>
-
+          <button mat-button class="btn btn-danger" (click)="delete(onibus)">Deletar</button>
         </form>
+      </div>
+      <br>
+
+      <div class="content">
+        <h3 class="ui-table-thead"> Alunos Cadastrados</h3>
+        <table mat-table [dataSource]="dataSource" class="table table-striped">
+
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="Selecione">
+            <th mat-header-cell *matHeaderCellDef scope="col">
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!-- Position Column -->
+          <ng-container matColumnDef=" cpf ">
+            <th mat-header-cell *matHeaderCellDef scope="col"> CPF </th>
+            <td mat-cell *matCellDef="let aluno"> {{aluno.cpf}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef scope="col"> Nome </th>
+            <td mat-cell *matCellDef="let aluno"> {{aluno.nome}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="telefone">
+            <th mat-header-cell *matHeaderCellDef scope="col"> Telefone </th>
+            <td mat-cell *matCellDef="let aluno"> {{aluno.telefone}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="endereco">
+            <th mat-header-cell *matHeaderCellDef scope="col"> Endereço </th>
+            <td mat-cell *matCellDef="let aluno"> {{aluno.endereco}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="nascimento">
+            <th mat-header-cell *matHeaderCellDef > Nascimento </th>
+            <td mat-cell *matCellDef="let aluno"> {{aluno?.dataNascimento.toLocaleString()}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              (click)="selection.toggle(row)">
+          </tr>
+        </table>
+        <div>
+          <button mat-button type="button" class="btn btn-primary" (click)="remover()">remover</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+

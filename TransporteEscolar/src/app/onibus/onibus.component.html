@@ -1,58 +1,71 @@
-<!-- Formulário para destinada a carregar os dados de alunos cadastrados -->
-<div class="card">
+<!-- Formulário para destinada a carregar os dados de Veículos cadastrados -->
+
+<div class="card" style="width: 100%">
   <div class="card-header">
-    Listagem de Veículos:
+    <h2 class="card-title">Listagem de Veículos:</h2>
   </div>
   <div class="card-body">
-    <div class="content">
-      <table mat-table [dataSource] ="dataSource" matSort class="mat-elevation-z8">
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="Nome">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Placa </th>
-          <td mat-cell *matCellDef="let onibus"> {{onibus.placa}} </td>
-        </ng-container>
+    <!--             <div class="example-full-width">-->
+    <!--                <tr *ngFor="let aluno of turma.alunos">-->
+    <!--                  <td> {{ aluno.nome}} </td>-->
+    <!--                  <td> {{ aluno.cpf}} </td>-->
+    <!--                  <td> {{ aluno.telefone}} </td>-->
+    <!--                  <td> {{ aluno.endereco}} </td>-->
+    <!--                  <td> {{ aluno.dataNascimento}} </td>-->
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="CPF">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Modelo </th>
-          <td mat-cell *matCellDef="let onibus"> {{onibus.modelo}} </td>
-        </ng-container>
+    <!--                </tr>-->
+    <!--              </div>-->
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="Telefone">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ano Fabricação </th>
-          <td mat-cell *matCellDef="let onibus"> {{onibus.anoFabricacao}} </td>
-        </ng-container>
+    <table mat-table [dataSource]="dataSource" matSort class="table table-striped">
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="Endereço">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Qtd Acentos </th>
-          <td mat-cell *matCellDef="let onibus"> {{onibus.qtdAcentos}} </td>
-        </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="placa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Placa </th>
+        <td mat-cell *matCellDef="let onibus"> {{onibus.placa}} </td>
+      </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="Ações">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
-          <td mat-cell *matCellDef="let onibus">
-            <button mat-button (click)="editar(onibus)">Editar</button>
-          </td>
-        </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="modelo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Modelo </th>
+        <td mat-cell *matCellDef="let onibus"> {{onibus.modelo}} </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="ano">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ano </th>
+        <td mat-cell *matCellDef="let onibus"> {{onibus.anoFabricacao}} </td>
+      </ng-container>
 
-    </div>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="acentos">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Acentos </th>
+        <td mat-cell *matCellDef="let onibus"> {{onibus.qtdAcentos}} </td>
+      </ng-container>
 
+      <ng-container matColumnDef="ações">
+        <th mat-header-cell *matHeaderCellDef > Ações </th>
+        <td mat-cell *matCellDef="let onibus">
+          <!--            <a [routerLink]="['/onibusEdit', onibus.placa.toString()]">-->
+          <!--              <a routerLink="/onibusEdit" [queryParams]="onibus">-->
+          <button mat-button type="button" class="btn btn-primary" (click)="editar(onibus)">editar</button>
+          <!--            </a>-->
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
   </div>
-  <div class="container">
+  <div>
     <a routerLink="/onibusDetalhe">
       <button mat-fab color="primary" >
         <mat-icon>add</mat-icon>
       </button>
     </a>
-  </div>
 
+
+  </div>
 </div>
 

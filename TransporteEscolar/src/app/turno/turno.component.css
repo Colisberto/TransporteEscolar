@@ -88,3 +88,8 @@
   text-align: right;
   padding-left: 10px;
 }
+
+.btn btn-primary{
+  display: table-cell;
+  margin-right: 8px;
+}

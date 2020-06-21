@@ -6,26 +6,26 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
-/*.card{
+.card{
   margin: 0;
   background-color: #eff2f5;
 }
 
-/**.tituloTela{
+.tituloTela{
   min-width: 200px;
   max-width: 500px;
   width: 200%;
-  left: 390px; /** jogando o conteúdo para a direita da pagina
+  left: 390px; /* jogando o conteúdo para a direita da pagina*/
   margin: 16px;
   padding: 16px;
-  border-radius: 50px; Aredondamento dos cantos do card
+  border-radius: 50px; /*Aredondamento dos cantos do card*/
 }
 
 .card-container{
   min-width: 150px;
   max-width: 500px;
   width: 100%;
-  left: 390px; jogando o conteúdo para a direita da pagina
+  left: 390px;  /*jogando o conteúdo para a direita da pagina */
 
 }
 
@@ -38,7 +38,7 @@ th.mat-sort-header-sorted {
 
 .formFildAluno {
   width: 100%;
-  left: 400px;  jogando o conteúdo para a direita da pagina
+  left: 400px;  /*jogando o conteúdo para a direita da pagina*/
 ;
 }
 
@@ -109,9 +109,8 @@ th.mat-sort-header-sorted {
   display: inline;
   text-align: right;
   padding-left: 10px;
-
+}
 
 .btnCadastrarAlterar{
-  left: 800px; /** jogando o conteúdo para a direita da pagina
+  left: 800px; /* jogando o conteúdo para a direita da pagina*/
 }
-**/
