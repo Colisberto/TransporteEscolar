@@ -35,7 +35,7 @@ export class TurnodetalheComponent implements OnInit, AfterViewInit, AfterConten
 
   inscricao: Subscription;
 
-  displayedColumns: string[] = ['cpf', 'nome', 'telefone', 'endereco', 'acões'];
+  displayedColumns: string[] = ['Selecione', 'CPF', 'nome', 'telefone', 'endereco', 'nascimento'];
   dataSource: MatTableDataSource<AlunoODT>;
   selection = new SelectionModel<AlunoODT>(true, []);
 
@@ -50,10 +50,10 @@ export class TurnodetalheComponent implements OnInit, AfterViewInit, AfterConten
             this.formTurno = this.fb.group({
               turno_id: [this.turno.turno_id],
               turno: [this.turno.turno, Validators.required],
-              dtInicTurno: [this.turno.dtInicTurno, Validators.required],
-              dtFinalTurno: [this.turno.dtFinalTurno, Validators.required],
-              horarioEmbarque: [this.turno.horarioEmbarque, Validators.required],
-              horarioDesembarque: [this.turno.horarioDesembarque, Validators.required]
+              dtInicTurno: [this.turno.dtInicTurno],
+              dtFinalTurno: [this.turno.dtFinalTurno],
+              horarioEmbarque: [this.turno.horarioEmbarque],
+              horarioDesembarque: [this.turno.horarioDesembarque]
             });
           }, error => {console.error(error); });
         } else {

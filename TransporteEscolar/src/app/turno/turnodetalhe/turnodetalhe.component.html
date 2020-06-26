@@ -29,17 +29,17 @@
 
           <mat-form-field class="example-full-width">
             <mat-label>Final</mat-label>
-            <input matInput placeholder="Ex. 1980 " formControlName=" dtFinalTurno">
+            <input matInput placeholder="Ex. 1980 " formControlName="dtFinalTurno">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Embarque</mat-label>
-            <input matInput placeholder="Ex. 18 " formControlName=" horarioEmbarque">
+            <input matInput placeholder="Ex. 18 " formControlName="horarioEmbarque">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Desembarque</mat-label>
-            <input matInput placeholder="Ex. 18 " formControlName=" horarioDesembarque">
+            <input matInput placeholder="Ex. 18 " formControlName="horarioDesembarque">
           </mat-form-field>
           <hr>
           <button mat-button type="submit" class="btn btn-primary">Salvar</button>
@@ -71,8 +71,8 @@
           </ng-container>
 
           <!-- Position Column -->
-          <ng-container matColumnDef=" cpf ">
-            <th mat-header-cell *matHeaderCellDef scope="col"> CPF </th>
+          <ng-container matColumnDef="CPF">
+            <th mat-header-cell *matHeaderCellDef scope="col"> cpf </th>
             <td mat-cell *matCellDef="let aluno"> {{aluno.cpf}} </td>
           </ng-container>
 
