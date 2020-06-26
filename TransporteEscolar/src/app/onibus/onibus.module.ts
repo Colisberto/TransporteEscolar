@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule } from '@angular/common';
 import {OnibusComponent} from './onibus.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -8,7 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
-import { OnibusDetalheComponent} from './onibusdetalhe/onibusdetalhe.component';
+import {OnibusDetalheComponent} from './onibusdetalhe/onibusdetalhe.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import {OnibusRoutingModule} from './onibus.routing.module';
 import {OnibusService} from './onibus.service';
@@ -16,6 +16,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {AlunoModule} from '../aluno/aluno.module';
+
 
 @NgModule({
   declarations: [OnibusComponent, OnibusDetalheComponent],
@@ -37,7 +39,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatSortModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    AlunoModule
   ],
   providers: [
     OnibusService

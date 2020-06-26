@@ -1,44 +1,49 @@
 <!-- Componente destinado ao formulário de preenchimento dos dados para gravar em Banco-->
 <div class="card" style="width: 100%">
   <div class="card-header">
-    <h2 class="card-title">Manutenção de Onibus:</h2>
+    <h2 class="card-title">Manutenção de Turno:</h2>
   </div>
   <div class="card-body">
     <div class="card-container">
       <div>
-        <form [formGroup]="formOnibus" (ngSubmit)="onSubmit()" class="example-form">
+        <form [formGroup]="formTurno" (ngSubmit)="onSubmit()" class="example-form">
           <div style="display: none">
             <mat-form-field class="example-full-width">
               <mat-label>ID</mat-label>
-              <input matInput  formControlName="onibus_id">
+              <input matInput  formControlName="turno_id">
             </mat-form-field>
           </div>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Placa</mat-label>
-            <input matInput placeholder="Ex. GKL-1586" formControlName="placa" required>
-            <mat-error *ngIf="isFieldInvalid('placa')">
+            <mat-label>Turno</mat-label>
+            <input matInput placeholder="Ex. Vespertino..." formControlName="turno" required>
+            <mat-error *ngIf="isFieldInvalid('turno')">
               Placa obrigatório
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Modelo</mat-label>
-            <input matInput placeholder="Ford 1530" formControlName="modelo">
+            <mat-label>Inicio</mat-label>
+            <input matInput placeholder="Ford 1530" formControlName="dtInicTurno">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Ano</mat-label>
-            <input matInput placeholder="Ex. 1980 " formControlName="anoFabricacao">
+            <mat-label>Final</mat-label>
+            <input matInput placeholder="Ex. 1980 " formControlName=" dtFinalTurno">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Acentos</mat-label>
-            <input matInput placeholder="Ex. 18 " formControlName="qtdAcentos">
+            <mat-label>Embarque</mat-label>
+            <input matInput placeholder="Ex. 18 " formControlName=" horarioEmbarque">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Desembarque</mat-label>
+            <input matInput placeholder="Ex. 18 " formControlName=" horarioDesembarque">
           </mat-form-field>
           <hr>
           <button mat-button type="submit" class="btn btn-primary">Salvar</button>
-          <button mat-button class="btn btn-danger" (click)="delete(onibus)">Deletar</button>
+          <button mat-button class="btn btn-danger" (click)="delete(turno)">Deletar</button>
         </form>
       </div>
       <br>
@@ -66,8 +71,8 @@
           </ng-container>
 
           <!-- Position Column -->
-          <ng-container matColumnDef="CPF">
-            <th mat-header-cell *matHeaderCellDef scope="col"> cpf </th>
+          <ng-container matColumnDef=" cpf ">
+            <th mat-header-cell *matHeaderCellDef scope="col"> CPF </th>
             <td mat-cell *matCellDef="let aluno"> {{aluno.cpf}} </td>
           </ng-container>
 

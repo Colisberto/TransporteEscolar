@@ -6,44 +6,34 @@
   </div>
   <div class="card-body">
 
-    <!--             <div class="example-full-width">-->
-    <!--                <tr *ngFor="let aluno of turma.alunos">-->
-    <!--                  <td> {{ aluno.nome}} </td>-->
-    <!--                  <td> {{ aluno.cpf}} </td>-->
-    <!--                  <td> {{ aluno.telefone}} </td>-->
-    <!--                  <td> {{ aluno.endereco}} </td>-->
-    <!--                  <td> {{ aluno.dataNascimento}} </td>-->
-
-    <!--                </tr>-->
-    <!--              </div>-->
-
+    <!-- Tabela a ser carregada em OnibusComponent-->
     <table mat-table [dataSource]="dataSource" matSort class="table table-striped">
 
       <!-- Position Column -->
-      <ng-container matColumnDef="placa">
+      <ng-container matColumnDef="Placa">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Placa </th>
         <td mat-cell *matCellDef="let onibus"> {{onibus.placa}} </td>
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="modelo">
+      <ng-container matColumnDef="Modelo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Modelo </th>
         <td mat-cell *matCellDef="let onibus"> {{onibus.modelo}} </td>
       </ng-container>
 
       <!-- Weight Column -->
-      <ng-container matColumnDef="ano">
+      <ng-container matColumnDef="Ano">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Ano </th>
         <td mat-cell *matCellDef="let onibus"> {{onibus.anoFabricacao}} </td>
       </ng-container>
 
       <!-- Weight Column -->
-      <ng-container matColumnDef="acentos">
+      <ng-container matColumnDef="Acentos">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Acentos </th>
         <td mat-cell *matCellDef="let onibus"> {{onibus.qtdAcentos}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="ações">
+      <ng-container matColumnDef="Ações">
         <th mat-header-cell *matHeaderCellDef > Ações </th>
         <td mat-cell *matCellDef="let onibus">
           <!--            <a [routerLink]="['/onibusEdit', onibus.placa.toString()]">-->

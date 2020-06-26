@@ -39,7 +39,7 @@ export class MotoristaComponent implements OnInit {
   @ViewChild
   (MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['Nome', 'CPF', 'Telefone', 'Endereço'];
+  displayedColumns: string[] = ['nome', 'cpf', 'telefone', 'endereco', 'Ações'];
 
   motorista: MotoristaODT[];
 

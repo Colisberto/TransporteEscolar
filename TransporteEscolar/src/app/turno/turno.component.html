@@ -1,166 +1,66 @@
-<mat-card  class="cardtitulo">
-  <div class=" titulo ">
-  Cadastrar Turnos e Períodos
+<!-- Formulário para destinada a carregar os dados de Turno -->
+
+<div class="card" style="width: 100%">
+  <div class="card-header">
+    <h2 class="card-title">Turnos Cadastrados:</h2>
   </div>
-</mat-card >
+  <div class="card-body">
 
-<mat-tab-group>
-  <mat-tab >
-    <mat-card>Cadastrar turno
-    <mat-card-content>
-      <form [formGroup]="formTurno" (ngSubmit)="onSubmit()" class="example-form">
-        <div style="display: none">
-          <mat-form-field class="example-full-width">
-            <mat-label>ID</mat-label>
-            <input matInput formControlName="id">
-          </mat-form-field>
-        </div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Turno</mat-label>
-          <input type="text" matInput placeholder formControlName="turno"
-                 pattern="[a-zA-Z ]*" required >
-          <mat-error *ngIf="isFieldInvalid('turno')">
-            Turno obrigatório, use somente letras.
-          </mat-error>
-        </mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort class="table table-striped">
 
-        <mat-form-field>
-          <mat-label>Inicio Turno</mat-label>
-          <input matInput [matDatepicker]="picker1" formControlName="dtInicTurno">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
+      <!-- Position Column -->
+      <ng-container matColumnDef="Turno">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Turno </th>
+        <td mat-cell *matCellDef="let turno"> {{turno.turno}} </td>
+      </ng-container>
 
-        <mat-form-field>
-          <mat-label>Final Turno</mat-label>
-          <input matInput [matDatepicker]="picker2" formControlName="dtFinalTurno">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
+      <!-- Name Column -->
+      <ng-container matColumnDef="Inicio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Inicio </th>
+        <td mat-cell *matCellDef="let turno"> {{turno.dtInicTurno}} </td>
+      </ng-container>
 
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Final">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Final </th>
+        <td mat-cell *matCellDef="let turno"> {{turno.dtFinalTurno}} </td>
+      </ng-container>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Hora do Embarque </mat-label>
-          <input matInput placeholder="07:00" formControlName="horarioEmbarque" >
-        </mat-form-field>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Embarque">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Entrada </th>
+        <td mat-cell *matCellDef="let turno"> {{turno.horarioEmbarque}} </td>
+      </ng-container>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Hora do Desembarque</mat-label>
-          <input matInput placeholder="12:30" formControlName="horarioDesembarque">
-        </mat-form-field>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Desembarque">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Saida </th>
+        <td mat-cell *matCellDef="let turno"> {{turno.horarioDesembarque}} </td>
+      </ng-container>
 
-        <hr>
-        <button mat-button type="submit" mat-raised-button color="primary">Salvar</button>
-        <!--<button mat-raised-button color="primary">Login</button> -->
+      <ng-container matColumnDef="ações">
+        <th mat-header-cell *matHeaderCellDef > Ações </th>
+        <td mat-cell *matCellDef="let turno">
+          <!--            <a [routerLink]="['/onibusEdit', onibus.placa.toString()]">-->
+          <!--              <a routerLink="/onibusEdit" [queryParams]="onibus">-->
+          <button mat-button type="button" class="btn btn-primary" (click)="editar(turno)">editar</button>
+          <!--            </a>-->
+        </td>
+      </ng-container>
 
-      </form>
-    </mat-card-content>
-    </mat-card>
-<!--
-  </mat-tab>
-  <mat-tab label="Vespertino"> Vespertino
-    <mat-card>Cadastrar turno
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-      <form [formGroup]="formTurno" (ngSubmit)="onSubmit()" class="example-form">
-        <div style="display: none">
-          <mat-form-field class="example-full-width">
-            <mat-label>ID</mat-label>
-            <input matInput formControlName="id">
-          </mat-form-field>
-        </div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Turno</mat-label>
-          <input type="text" matInput placeholder formControlName="turno"
-                 pattern="[a-zA-Z ]*" required>
-          <mat-error *ngIf="isFieldInvalid('turno')">
-            Turno obrigatório, use somente letras.
-          </mat-error>
-        </mat-form-field>
-
-         <mat-form-field>
-            <mat-label>Inicio Turno</mat-label>
-            <input matInput [matDatepicker]="picker3" formControlName="dtInicTurno">
-            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-            <mat-datepicker #picker3></mat-datepicker>
-          </mat-form-field>
-
-                 <mat-form-field>
-                   <mat-label>Final Turno</mat-label>
-                   <input matInput [matDatepicker]="picker4" formControlName="dtFinalTurno">
-                   <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-                   <mat-datepicker #picker4></mat-datepicker>
-                 </mat-form-field>
+    </table>
+  </div>
+  <div>
+    <a routerLink="/turnoDetalhe">
+      <button mat-fab color="primary" >
+        <mat-icon>add</mat-icon>
+      </button>
+    </a>
 
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Hora do Embarque</mat-label>
-          <input matInput placeholder="13:00" formControlName="horarioEmbarque">
-        </mat-form-field>
+  </div>
+</div>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Hora do Desembarque</mat-label>
-          <input matInput placeholder="18:30" formControlName="horarioDesembarque">
-        </mat-form-field>
-
-        <hr>
-        <button mat-button type="submit" class="btn btn-primary">Salvar</button>
-
-      </form>
-
-    </mat-card>
-
-  </mat-tab>
-  <mat-tab label="Noturno"> Noturno
-
-    <mat-card>Cadastrar turno
-
-      <form [formGroup]="formTurno" (ngSubmit)="onSubmit()" class="example-form">
-        <div style="display: none">
-          <mat-form-field class="example-full-width">
-            <mat-label>ID</mat-label>
-            <input matInput formControlName="id">
-          </mat-form-field>
-        </div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Turno</mat-label>
-          <input type="text" matInput placeholder formControlName="turno"
-                 pattern="[a-zA-Z ]*" required>
-          <mat-error *ngIf="isFieldInvalid('turno')">
-            Turno obrigatório, use somente letras.
-          </mat-error>
-        </mat-form-field>
-
-                 <mat-form-field>
-                   <mat-label>Inicio Turno</mat-label>
-                   <input matInput [matDatepicker]="picker5" formControlName="dtInicTurno">
-                   <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
-                   <mat-datepicker #picker5></mat-datepicker>
-                 </mat-form-field>
-
-                         <mat-form-field>
-                           <mat-label>Final Turno</mat-label>
-                           <input matInput [matDatepicker]="picker6" formControlName="dtFinalTurno">
-                           <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
-                           <mat-datepicker #picker6></mat-datepicker>
-                         </mat-form-field>
-
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Hora do Embarque</mat-label>
-          <input matInput placeholder="18:30" formControlName="horarioEmbarque">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Hora do Desembarque</mat-label>
-          <input matInput placeholder="22:30" formControlName="horarioDesembarque">
-        </mat-form-field>
-
-        <hr>
-        <button mat-button type="submit" class="btn btn-primary">Salvar</button>
-
-      </form>
-
-    </mat-card>-->
-
-  </mat-tab>
-</mat-tab-group>

@@ -1,8 +1,8 @@
 import {AlunoODT} from '../aluno/alunoODT';
 
-export interface TurnoODT{
+export interface TurnoODT {
 
-  id: number;
+  turno_id: number;
   turno: string;
   dtInicTurno: Date;
   dtFinalTurno: Date;

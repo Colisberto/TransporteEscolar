@@ -6,7 +6,8 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {AlunoService} from './aluno.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TurnoService} from '../turno/turno.service';
 
 @Component({
   selector: 'app-aluno',
@@ -37,7 +38,7 @@ export class AlunoComponent implements OnInit {
   @ViewChild
   (MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['cpf', 'nome', 'telefone', 'endereco', 'acões'];
+  displayedColumns: string[] = ['CPF', 'Nome', 'Telefone', 'Endereço', 'Ações'];
 
   alunos: AlunoODT[];
 
@@ -52,4 +53,5 @@ export class AlunoComponent implements OnInit {
   editar(aluno: AlunoODT) {
     this.router.navigate(['/alunoEdit/', aluno.id]);
   }
+
 }

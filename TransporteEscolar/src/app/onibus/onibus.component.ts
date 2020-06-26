@@ -23,7 +23,7 @@ export class OnibusComponent implements OnInit {
   @ViewChild
   (MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['placa', 'modelo', 'ano', 'acentos', 'ações'];
+  displayedColumns: string[] = ['Placa', 'Modelo', 'Ano', 'Acentos', 'Ações'];
 
   onibus: OnibusODT[];
 
@@ -36,6 +36,6 @@ export class OnibusComponent implements OnInit {
   }
 
   editar(onibuss: OnibusODT) {
-    this.router.navigate(['/onibusEdit/', onibuss.id]);
+    this.router.navigate(['/onibusEdit/', onibuss.onibus_id]);
   }
 }

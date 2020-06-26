@@ -1,4 +1,4 @@
-import {AfterContentChecked, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {OnibusODT} from '../onibusODT';
 import {AlunoODT} from '../../aluno/alunoODT';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
@@ -20,22 +20,23 @@ import {MatSort} from '@angular/material/sort';
 })
 export class OnibusDetalheComponent implements OnInit, AfterViewInit, AfterContentChecked {
 
-  constructor( private route: ActivatedRoute,
-               private onibusService: OnibusService,
-               private router: Router,
-               private fb: FormBuilder) {
-  }
 
+  constructor( private route: ActivatedRoute,
+               private  onibusService: OnibusService,
+               private router: Router,
+               private fb: FormBuilder,
+               private changeDetectorRefs: ChangeDetectorRef) {
+  }
   formOnibus: FormGroup;
   public onibus: OnibusODT;
   public salvo: boolean;
 
-  @ViewChild(MatSort, { static: false}) sort: MatSort;
-  @ViewChild(MatTable, { static: false}) table: MatTable<any>;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatTable, {static: false}) table: MatTable<any>;
 
   inscricao: Subscription;
 
-  displayedColumns: string[] = ['Selecione', 'nome', 'cpf', 'telefone', 'endereço', 'nascimento'];
+  displayedColumns: string[] = ['Selecione', 'CPF', 'nome', 'telefone', 'endereco', 'nascimento'];
   dataSource: MatTableDataSource<AlunoODT>;
   selection = new SelectionModel<AlunoODT>(true, []);
 
@@ -48,27 +49,25 @@ export class OnibusDetalheComponent implements OnInit, AfterViewInit, AfterConte
           this.onibusService.getOnibusByID(id).subscribe(dados => {
             this.onibus = dados;
             this.formOnibus = this.fb.group({
-              id: [this.onibus.id],
+              id: [this.onibus.onibus_id],
               placa: [this.onibus.placa, Validators.required],
               modelo: [this.onibus.modelo],
-              anoFabricacao: [this.onibus.anoFabricacao],
-              qtdAcentos: [this.onibus.qtdAcentos]
-
+              qtdAcentos: [this.onibus.qtdAcentos],
+              anoFabricacao: [this.onibus.anoFabricacao]
             });
           }, error => {console.error(error); });
         } else {
           this.onibus = {
-            id: null, placa: '', modelo: '', anoFabricacao: '', qtdAcentos: '',
+            onibus_id: null, placa: '', modelo: '', qtdAcentos: '', anoFabricacao: '',
             alunos: [],
           };
           this.dataSource = new MatTableDataSource<AlunoODT>([]);
           this.formOnibus = this.fb.group({
-            id: [this.onibus.id],
+            onibus_id: [this.onibus.onibus_id],
             placa: [this.onibus.placa, Validators.required],
             modelo: [this.onibus.modelo],
             qtdAcentos: [this.onibus.qtdAcentos],
             anoFabricacao: [this.onibus.anoFabricacao]
-
           });
         }
       });
@@ -82,70 +81,69 @@ export class OnibusDetalheComponent implements OnInit, AfterViewInit, AfterConte
   ngAfterContentChecked() {
     this.dataSource = new MatTableDataSource(this.onibus.alunos);
   }
+
+
+
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy() {
     this.inscricao.unsubscribe();
   }
 
+
+
   onSubmit() {
     this.onibus = (this.formOnibus.value);
-    if (this.onibus.id === null) {
+    if (this.onibus.onibus_id === null) {
       this.onibusService.save(this.onibus).subscribe(() => {
-        this.onibusService.showMessage('Onibus salva com sucesso!', false);
-        this.router.navigate(['/onibus']);
+        this.onibusService.showMessage('Onibus salvo com sucesso!', false);
+        this.router.navigate(['/turma']);
       });
     } else {
       this.onibusService.update(this.onibus).subscribe(() => {
-        this.onibusService.showMessage('Onibus atualizada com sucesso!', false);
+        this.onibusService.showMessage('Onibus atualizado com sucesso!', false);
         this.router.navigate(['/onibus']);
       });
     }
   }
 
-  /** Se o número de elementos selecionados corresponde ao número total de linhas. */
+
+  /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  /** Seleciona todas as linhas se elas não estiverem todas selecionadas; caso contrário, seleção clara. */
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  /** O rótulo da caixa de seleção na linha passada */
+  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: AlunoODT): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.cpf + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
-
   remover() {
     const valuesToRemove = this.selection.selected;
 
     const filteredItems = this.onibus.alunos.filter(item => !valuesToRemove.includes(item));
-    console.log(filteredItems);
     this.dataSource = new MatTableDataSource<AlunoODT>(filteredItems);
+    this.selection =  new SelectionModel<AlunoODT>(true, []);
+    this.changeDetectorRefs.detectChanges();
+    this.table.renderRows();
   }
 
   delete(onibus: OnibusODT) {
     this.onibusService.delete(onibus).subscribe(() => {
-      this.onibusService.showMessage('Onibus deletada com sucesso!', false);
+      this.onibusService.showMessage('Onibus deletado com sucesso!', false);
       this.router.navigate(['/onibus']);
     });
   }
-
- /* delete(onibus: OnibusODT, f: NgForm) {
-    this.onibusService.delete(onibus);
-    // this.router.navigate(['/turma/']);
-    //  f.setValue("");
-    f.form.reset(); // limpa o formulário.
-  }*/
-
 
   isFieldInvalid(field: string) { // {6}
     return (
@@ -154,5 +152,3 @@ export class OnibusDetalheComponent implements OnInit, AfterViewInit, AfterConte
     );
   }
 }
-
-

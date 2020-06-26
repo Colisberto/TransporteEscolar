@@ -2,11 +2,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { TurnoComponent } from './turno.component';
+import {AuthGuard} from '../auth/auth.guard';
+import {TurnodetalheComponent} from './turnodetalhe/turnodetalhe.component';
 
 
 // Criação da rota para formulário turno
 const turnoRouts: Routes = [
   {path: 'turno', component: TurnoComponent},
+  {path: 'turnoDetalhe', component: TurnodetalheComponent},
+  {path: 'turnoEdit/:id', component: TurnodetalheComponent},
 
 ];
 
