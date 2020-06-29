@@ -10,7 +10,9 @@
   <div class="card-body">
     <div class="card-container">
       <div>
-        <form [formGroup]="formUsuario" (ngSubmit)="onSubmit()" class="example-form">
+
+        <form [formGroup]="formAluno" (ngSubmit)="onSubmit()" class="example-form">
+
           <div style="display: none">
             <mat-form-field class="example-full-width">
               <mat-label>ID</mat-label>
@@ -18,6 +20,15 @@
             </mat-form-field>
           </div>
           <mat-form-field class="example-full-width">
+
+            <!--
+            <mat-card class="imgAluno">
+              <div >
+                <img src="assets/img/aluno.png">
+              </div>
+            </mat-card>
+            -->
+
             <mat-label>Nome</mat-label>
             <input type="text" matInput placeholder="Ex. João"  formControlName="nome"
                    pattern="[a-zA-Z ]*" required>
@@ -46,11 +57,7 @@
 
           <mat-form-field class="example-full-width">
             <mat-label>Endereço</mat-label>
-            <input matInput placeholder="Ex. Rua teste setor central" formControlName="endereco"
-            simpleMask="rua 15 de maio" [clearIfNotMatch]="true" required>
-            <mat-error *ngIf="isFieldInvalid('endereco')">
-              Endereço obrigatório, use somente números.
-            </mat-error>
+            <input matInput placeholder="Ex. Rua teste setor central" formControlName="endereco">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
@@ -70,11 +77,13 @@
 
           <hr>
           <div fxLayout="row" fxLayoutAlign="end end">
-            <button mat-button type="submit" mat-raised-button color="primary">Salvar</button>
-            <button mat-button type="submit" mat-raised-button color="warn">Cancelar</button>
+            <button mat-button type="submit" class="btnSalvarAluno" >Salvar</button>
+            <button mat-button type="submit" class="btnDeletarAluno">Cancelar</button>
           </div>
 
+
         </form>
+
       </div>
     </div>
   </div>

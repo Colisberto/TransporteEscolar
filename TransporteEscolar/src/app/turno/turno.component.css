@@ -4,6 +4,13 @@
 
 
 }
+
+.tabelaTurno{
+  bgcolor: white;
+  width: 80%;
+  height:10px;
+}
+
 .cardtitulo {
   max-width: 900px;
 }

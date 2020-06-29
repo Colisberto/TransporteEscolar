@@ -1,11 +1,35 @@
 .example-form {
   min-width: 150px;
-  max-width: 500px;
+  max-width: 300px;
   width: 100%;
 }
 
 .example-full-width {
   width: 100%;
+}
+
+.btnSalvarAluno{
+  color: #7CFC00;
+  background: #666;
+  margin-right: 5px;
+  margin-bottom: 5px !important;
+}
+.btnDeletarAluno{
+  background: #666;
+  color: #FF0000;
+}
+
+.btnCancelarAluno{
+  background: #666;
+  color: #FF0000;
+}
+
+.imgAluno{
+ /* top: 70px;*/
+  /*right: 10px;*/
+  max-width: 400px;
+  margin-right: 300px;
+  margin-left: 500px;
 }
 
 
@@ -64,11 +88,5 @@
   text-align: right;
   padding-left: 10px;
 }
-/* Opened submenu icon */
-#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
-  content: " \f0da";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 10px;
-}
+
+

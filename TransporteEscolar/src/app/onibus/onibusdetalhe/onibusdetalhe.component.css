@@ -8,6 +8,17 @@
   width: 100%;
 }
 
+.btnSalvarOnibus{
+  color: #7CFC00;
+  background: #666;
+  margin-right: 5px;
+  margin-bottom: 5px !important;
+}
+.btnDeletarOnibus{
+  background: #666;
+  color: #FF0000;
+}
+
 
 #body-row {
   margin-left:0;

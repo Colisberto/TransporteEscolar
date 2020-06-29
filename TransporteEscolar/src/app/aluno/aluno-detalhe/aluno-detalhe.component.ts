@@ -5,7 +5,7 @@ import {AlunoODT} from '../alunoODT';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AlunoService} from '../aluno.service';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
@@ -32,9 +32,10 @@ export class AlunoDetalheComponent implements OnInit {
 
   constructor(private alunoService: AlunoService,
               private route: ActivatedRoute,
+              private router: Router,
               private fb: FormBuilder) { }
 
-  formUsuario: FormGroup;
+  formAluno: FormGroup;
 
   private formSubmitAttempt: boolean;
 
@@ -49,16 +50,16 @@ export class AlunoDetalheComponent implements OnInit {
         if (id) {
           this.alunoService.getAlunoByID(id).subscribe(dados => {
             this.aluno = dados;
-            this.formUsuario = this.fb.group({     // {5}
+            this.formAluno = this.fb.group({     // {5}
               id: [this.aluno.id],
               nome: [this.aluno.nome, Validators.required],
               cpf: [this.aluno.cpf, Validators.required],
               telefone: [this.aluno.telefone],
-              endereco: [this.aluno.email],
+              endereco: [this.aluno.endereco],
               email: [this.aluno.email, [Validators.required, Validators.email]],
               dataNascimento: [this.aluno.dataNascimento]
             });
-            console.log(this.formUsuario);
+            console.log(this.formAluno);
           }, error => {console.error(error); });
         } else {
           this.aluno = {
@@ -70,12 +71,12 @@ export class AlunoDetalheComponent implements OnInit {
             dataNascimento: null,
             email: ''
           };
-          this.formUsuario = this.fb.group({     // {5}
+          this.formAluno = this.fb.group({     // {5}
             id: [this.aluno.id],
             nome: [this.aluno.nome, Validators.required],
             cpf: [this.aluno.cpf, Validators.required],
             telefone: [this.aluno.telefone],
-            endereco: [this.aluno.email],
+            endereco: [this.aluno.endereco],
             email: [this.aluno.email, [Validators.required, Validators.email]],
             dataNascimento: [this.aluno.dataNascimento]
           });
@@ -84,24 +85,34 @@ export class AlunoDetalheComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.formUsuario.valid) {
-      this.aluno = (this.formUsuario.value);
-      console.log(this.aluno);
+    if (this.formAluno.valid) {
+      this.aluno = (this.formAluno.value);
       if (this.aluno.id === null) {
-        this.alunoService.saveAluno(this.aluno);
+        this.alunoService.saveAluno(this.aluno).subscribe(() => {
+          this.alunoService.showMessage('Aluno salvo com sucesso!', false);
+          this.router.navigate(['/aluno']);
+          this.formAluno.reset();
+        });
       } else {
-        this.alunoService.updateAluno(this.aluno);
+        this.alunoService.updateAluno(this.aluno).subscribe(() => {
+          this.alunoService.showMessage('Aluno atualizado com sucesso!', false);
+          this.router.navigate(['/aluno']);
+        });
       }
-    } else {
-
     }
-    this.formUsuario.reset();
+  }
+
+  delete(aluno: AlunoODT) {
+    this.alunoService.delete(aluno).subscribe(() => {
+      this.alunoService.showMessage('Aluno deletado com sucesso!', false);
+      this.router.navigate(['/aluno']);
+    });
   }
 
   isFieldInvalid(field: string) { // {6}
     return (
-      (!this.formUsuario.get(field).valid && this.formUsuario.get(field).touched) ||
-      (this.formUsuario.get(field).untouched && this.formSubmitAttempt) || (this.formUsuario.get(field).errors)
+      (!this.formAluno.get(field).valid && this.formAluno.get(field).touched) ||
+      (this.formAluno.get(field).untouched && this.formSubmitAttempt) || (this.formAluno.get(field).errors)
     );
   }
 }

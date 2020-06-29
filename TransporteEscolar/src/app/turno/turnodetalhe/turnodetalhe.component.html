@@ -22,31 +22,44 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Inicio</mat-label>
-            <input matInput placeholder="Ford 1530" formControlName="dtInicTurno">
-          </mat-form-field>
+        <div class="calendario">
+          <mat-card>
+            <mat-form-field>
+              <mat-label>Data de Inicial do Turno</mat-label>
+              <input matInput [matDatepicker]="picker1" formControlName="dtInicTurno">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </mat-card>
+
+          <mat-card>
+            <mat-form-field>
+              <mat-label>Data de Final do Turno</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="dtFinalTurno">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </mat-card>
+      </div>
+
 
           <mat-form-field class="example-full-width">
-            <mat-label>Final</mat-label>
-            <input matInput placeholder="Ex. 1980 " formControlName="dtFinalTurno">
-          </mat-form-field>
-
-          <mat-form-field class="example-full-width">
-            <mat-label>Embarque</mat-label>
+            <mat-label>Horário de Embarque</mat-label>
             <input matInput placeholder="Ex. 18 " formControlName="horarioEmbarque">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Desembarque</mat-label>
+            <mat-label>Horário de Desembarque</mat-label>
             <input matInput placeholder="Ex. 18 " formControlName="horarioDesembarque">
           </mat-form-field>
           <hr>
-          <button mat-button type="submit" class="btn btn-primary">Salvar</button>
-          <button mat-button class="btn btn-danger" (click)="delete(turno)">Deletar</button>
+          <button mat-button type="submit" class="btnSalvarTurno">Salvar</button>
+          <button mat-button class="btnDeletarTurno" (click)="delete(turno)">Deletar</button>
         </form>
       </div>
       <br>
+
+      <!--Área destinada a manutenção de ALUNOS no TURNO-->
 
       <div class="content">
         <h3 class="ui-table-thead"> Alunos Cadastrados</h3>

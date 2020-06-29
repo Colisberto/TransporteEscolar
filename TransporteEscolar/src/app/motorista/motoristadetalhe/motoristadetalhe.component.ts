@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {MotoristaODT} from '../motoristaODT';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {MotoristaService} from '../motorista.service';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
+import {TurnoODT} from '../../turno/turnoODT';
 
 @Component({
   selector: 'app-motoristadetalhe',
@@ -30,17 +31,22 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class MotoristaDetalheComponent implements OnInit {
 
-  constructor(private motoristaService: MotoristaService,
-              private route: ActivatedRoute,
-              private fb: FormBuilder) { }
+  constructor( private route: ActivatedRoute,
+               private motoristaService: MotoristaService,
+               private router: Router,
+               private fb: FormBuilder,
+               private changeDetectorRefs: ChangeDetectorRef) {
+}
 
   formUsuario: FormGroup;
+  public motorista: MotoristaODT;
+  public salvo: boolean;
 
   private formSubmitAttempt: boolean;
 
   inscricao: Subscription;
 
-  motorista: MotoristaODT;
+
 
   ngOnInit(): void {
     this.inscricao = this.route.params.subscribe(
@@ -84,16 +90,17 @@ export class MotoristaDetalheComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.formUsuario.valid) {
-      this.motorista = (this.formUsuario.value);
-      console.log(this.motorista);
-      if (this.motorista.id === null) {
-        this.motoristaService.saveMotorista(this.motorista);
-      } else {
-        this.motoristaService.updateMotorista(this.motorista);
-      }
+    this.motorista = (this.formUsuario.value);
+    if (this.motorista.id === null) {
+      this.motoristaService.saveMotorista(this.motorista).subscribe(() => {
+        this.motoristaService.showMessage('Motorista salvo com sucesso!', false);
+        this.router.navigate(['/motorista']);
+      });
     } else {
-
+      this.motoristaService.updateMotorista(this.motorista).subscribe(() => {
+        this.motoristaService.showMessage('Motorista atualizado com sucesso!', false);
+        this.router.navigate(['/motorista']);
+      });
     }
   }
 
@@ -102,5 +109,9 @@ export class MotoristaDetalheComponent implements OnInit {
       (!this.formUsuario.get(field).valid && this.formUsuario.get(field).touched) ||
       (this.formUsuario.get(field).untouched && this.formSubmitAttempt) || (this.formUsuario.get(field).errors)
     );
+  }
+
+  delete(motorista: MotoristaODT) {
+    
   }
 }

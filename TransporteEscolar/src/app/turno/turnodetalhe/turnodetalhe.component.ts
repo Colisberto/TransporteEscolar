@@ -1,4 +1,4 @@
-import {AfterContentChecked, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {TurnoODT} from '../turnoODT';
 import {AlunoODT} from '../../aluno/alunoODT';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
@@ -23,7 +23,8 @@ export class TurnodetalheComponent implements OnInit, AfterViewInit, AfterConten
   constructor( private route: ActivatedRoute,
                private turnoService: TurnoService,
                private router: Router,
-               private fb: FormBuilder) {
+               private fb: FormBuilder,
+               private changeDetectorRefs: ChangeDetectorRef) {
   }
 
   formTurno: FormGroup;

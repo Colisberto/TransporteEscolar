@@ -13,9 +13,15 @@ import {OnibusODT} from '../onibus/onibusODT';
 export class TurnoService {
 
   constructor(private snackBar: MatSnackBar,
-              private http: HttpClient) {}ng
+              private http: HttpClient) {
 
-  turno: TurnoODT;
+  }
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   list(): Observable<TurnoODT[]> {
     const url = 'http://localhost:9000/api/turno/all';
@@ -30,45 +36,31 @@ export class TurnoService {
   saveTurno(turno: TurnoODT): Observable<TurnoODT> {
     const url = 'http://localhost:9000/api/turno/add';
     // @ts-ignore
-    return this.http.post<TurnoODT>(url, turno).pipe(
-      catchError(this.handleError)
-    ).subscribe((data) => {
-      console.log(data);
-    });
-  }
-
-  // Método PUT
-  update(turno: TurnoODT): Observable<TurnoODT> {
-    const url = 'http://localhost:9000/api/turno/edit';
-    // @ts-ignore
-    return this.http.put<TurnoODT>(url, turno)
+    return this.http.post<TurnoODT>(url, turno)
       .pipe(
         map((obj) => obj),
         catchError((e) => this.errorHandler(e))
       );
   }
 
-  delete (turno: TurnoODT): Observable<TurnoODT[]> {
-   //mudar depois para delete
-    const url = 'http://localhost:9000/api/turno/all';
-    return this.http.get <TurnoODT[]>(url);
+  update(turma: TurnoODT): Observable<TurnoODT> {
+    const url = 'http://localhost:9000/api/turno/edit';
+    // @ts-ignore
+    return this.http.put<TurnoODT>(url, this.turno)
+      .pipe(
+        map((obj) => obj),
+        catchError((e) => this.errorHandler(e))
+      );
   }
 
-  // Manipulação de erros
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // Ocorreu um erro no cliente ou na rede. Manuseie de acordo..
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // O back-end retornou um código de resposta sem êxito..
-      // O corpo da resposta pode conter pistas sobre o que deu errado,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // retornar um observável com uma mensagem de erro voltada para o usuário
-    return throwError(
-      'Algo de errado aconteceu; por favor, tente novamente mais tarde.');
+
+  delete(turno: TurnoODT): Observable<TurnoODT> {
+    const url = 'http://localhost:9000/api/turno/delete/';
+    // @ts-ignore
+    return this.http.delete<any>(url + turno.id).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
   }
 
   errorHandler(e: any): Observable<any> {

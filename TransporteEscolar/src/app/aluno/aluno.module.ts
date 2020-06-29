@@ -15,6 +15,7 @@ import {MatTableModule} from '@angular/material/table';
 import {AlunoService} from './aluno.service';
 import {MatSortModule} from '@angular/material/sort';
 import {SimpleMaskDirective, SimpleMaskModule, SimpleMaskPipe} from 'ngx-ion-simple-mask';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -23,21 +24,22 @@ import {SimpleMaskDirective, SimpleMaskModule, SimpleMaskPipe} from 'ngx-ion-sim
   exports: [
     AlunoComponent
   ],
-  imports: [
-    CommonModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    AlunoRoutingModule,
-    MatIconModule,
-    MatTableModule,
-    MatSortModule,
-    SimpleMaskModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        AlunoRoutingModule,
+        MatIconModule,
+        MatTableModule,
+        MatSortModule,
+        SimpleMaskModule,
+        ReactiveFormsModule,
+        MatCardModule
+    ],
   providers: [
     AlunoService
   ],

@@ -6,7 +6,7 @@
   </div>
   <div class="card-body">
 
-    <table mat-table [dataSource]="dataSource" matSort class="table table-striped">
+    <table mat-table [dataSource]="dataSource" matSort class="tabelaTurno">
 
       <!-- Position Column -->
       <ng-container matColumnDef="Turno">
@@ -14,27 +14,26 @@
         <td mat-cell *matCellDef="let turno"> {{turno.turno}} </td>
       </ng-container>
 
-      <!-- Name Column -->
+      <!-- Symbol Column -->
       <ng-container matColumnDef="Inicio">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Inicio </th>
-        <td mat-cell *matCellDef="let turno"> {{turno.dtInicTurno}} </td>
+        <th mat-header-cell *matHeaderCellDef >Data Inicial do Turno</th>
+        <td mat-cell *matCellDef="let turno"> {{turno?.dtInicTurno.toLocaleString()}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
       <ng-container matColumnDef="Final">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Final </th>
-        <td mat-cell *matCellDef="let turno"> {{turno.dtFinalTurno}} </td>
+        <th mat-header-cell *matHeaderCellDef >Data Final do Turno</th>
+        <td mat-cell *matCellDef="let turno"> {{turno?.dtFinalTurno.toLocaleString()}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="Embarque">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Entrada </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Horário de Embarque</th>
         <td mat-cell *matCellDef="let turno"> {{turno.horarioEmbarque}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="Desembarque">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> Saida </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Horário de Desembarque</th>
         <td mat-cell *matCellDef="let turno"> {{turno.horarioDesembarque}} </td>
       </ng-container>
 

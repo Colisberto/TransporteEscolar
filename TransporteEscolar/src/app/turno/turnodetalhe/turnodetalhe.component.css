@@ -8,6 +8,21 @@
   width: 100%;
 }
 
+.calendario{
+  background-color: #98FB98;
+
+}
+
+.btnSalvarTurno{
+  color: #7CFC00;
+  background: #666;
+  margin-right: 5px;
+  margin-bottom: 5px !important;
+}
+.btnDeletarTurno{
+  background: #666;
+  color: #FF0000;
+}
 
 #body-row {
   margin-left:0;
