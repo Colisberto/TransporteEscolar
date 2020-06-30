@@ -8,6 +8,7 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {TurnoODT} from '../../turno/turnoODT';
+import {OnibusODT} from '../../onibus/onibusODT';
 
 @Component({
   selector: 'app-motoristadetalhe',
@@ -38,7 +39,7 @@ export class MotoristaDetalheComponent implements OnInit {
                private changeDetectorRefs: ChangeDetectorRef) {
 }
 
-  formUsuario: FormGroup;
+  formMotorista: FormGroup;
   public motorista: MotoristaODT;
   public salvo: boolean;
 
@@ -55,7 +56,7 @@ export class MotoristaDetalheComponent implements OnInit {
         if (id) {
           this.motoristaService.getMotoristaByID(id).subscribe(dados => {
             this.motorista = dados;
-            this.formUsuario = this.fb.group({     // {5}
+            this.formMotorista = this.fb.group({     // {5}
               id: [this.motorista.id],
               nome: [this.motorista.nome, Validators.required],
               cpf: [this.motorista.cpf, Validators.required],
@@ -64,7 +65,7 @@ export class MotoristaDetalheComponent implements OnInit {
               email: [this.motorista.email, [Validators.required, Validators.email]],
               dataNascimento: [this.motorista.dataNascimento]
             });
-            console.log(this.formUsuario);
+            console.log(this.formMotorista);
           }, error => {console.error(error); });
         } else {
           this.motorista = {
@@ -76,7 +77,7 @@ export class MotoristaDetalheComponent implements OnInit {
             dataNascimento: null,
             email: ''
           };
-          this.formUsuario = this.fb.group({     // {5}
+          this.formMotorista = this.fb.group({     // {5}
             id: [this.motorista.id],
             nome: [this.motorista.nome, Validators.required],
             cpf: [this.motorista.cpf, Validators.required],
@@ -90,28 +91,34 @@ export class MotoristaDetalheComponent implements OnInit {
   }
 
   onSubmit() {
-    this.motorista = (this.formUsuario.value);
-    if (this.motorista.id === null) {
-      this.motoristaService.saveMotorista(this.motorista).subscribe(() => {
-        this.motoristaService.showMessage('Motorista salvo com sucesso!', false);
-        this.router.navigate(['/motorista']);
-      });
-    } else {
-      this.motoristaService.updateMotorista(this.motorista).subscribe(() => {
-        this.motoristaService.showMessage('Motorista atualizado com sucesso!', false);
-        this.router.navigate(['/motorista']);
-      });
+    if (this.formMotorista.valid) {
+      this.motorista = (this.formMotorista.value);
+      if (this.motorista.id === null) {
+        this.motoristaService.saveMotorista(this.motorista).subscribe(() => {
+          this.motoristaService.showMessage('Motorista salvo com sucesso!', false);
+          this.router.navigate(['/motorista']);
+          this.formMotorista.reset();
+        });
+      } else {
+        this.motoristaService.updateMotorista(this.motorista).subscribe(() => {
+          this.motoristaService.showMessage('Motorista atualizado com sucesso!', false);
+          this.router.navigate(['/motorista']);
+        });
+      }
     }
   }
 
   isFieldInvalid(field: string) { // {6}
     return (
-      (!this.formUsuario.get(field).valid && this.formUsuario.get(field).touched) ||
-      (this.formUsuario.get(field).untouched && this.formSubmitAttempt) || (this.formUsuario.get(field).errors)
+      (!this.formMotorista.get(field).valid && this.formMotorista.get(field).touched) ||
+      (this.formMotorista.get(field).untouched && this.formSubmitAttempt) || (this.formMotorista.get(field).errors)
     );
   }
 
   delete(motorista: MotoristaODT) {
-    
+    this.motoristaService.delete(motorista).subscribe(() => {
+      this.motoristaService.showMessage('Motorista deletado com sucesso!', false);
+      this.router.navigate(['/motorista']);
+    });
   }
 }

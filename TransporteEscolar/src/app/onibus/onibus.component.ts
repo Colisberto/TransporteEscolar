@@ -35,7 +35,7 @@ export class OnibusComponent implements OnInit {
     });
   }
 
-  editar(onibuss: OnibusODT) {
-    this.router.navigate(['/onibusEdit/', onibuss.onibus_id]);
+  editar(onibus: OnibusODT) {
+    this.router.navigate(['/onibusEdit/', onibus.onibus_id]);
   }
 }

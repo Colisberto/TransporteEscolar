@@ -6,6 +6,7 @@ import {catchError, map} from 'rxjs/operators';
 import { MotoristaODT} from './motoristaODT';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TurnoODT} from '../turno/turnoODT';
+import {OnibusODT} from '../onibus/onibusODT';
 
 @Injectable({
   providedIn: 'root'
@@ -48,10 +49,11 @@ export class MotoristaService {
   }
 
   // Método responsável por Alterar/Editar dados do motorista já cadastrado no Banco
+  // Método PUT
   updateMotorista(motorista: MotoristaODT): Observable<MotoristaODT> {
     const url = 'http://localhost:9000/api/motorista/edit';
     // @ts-ignore
-    return this.http.put<MotoristaODT>(url, this.motorista)
+    return this.http.put<MotoristaODT>(url, motorista)
       .pipe(
         map((obj) => obj),
         catchError((e) => this.errorHandler(e))

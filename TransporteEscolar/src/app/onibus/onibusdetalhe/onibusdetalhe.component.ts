@@ -89,23 +89,23 @@ export class OnibusDetalheComponent implements OnInit, AfterViewInit, AfterConte
     this.inscricao.unsubscribe();
   }
 
-
-
   onSubmit() {
-    this.onibus = (this.formOnibus.value);
-    if (this.onibus.onibus_id === null) {
-      this.onibusService.save(this.onibus).subscribe(() => {
-        this.onibusService.showMessage('Onibus salvo com sucesso!', false);
-        this.router.navigate(['/turma']);
-      });
-    } else {
-      this.onibusService.update(this.onibus).subscribe(() => {
-        this.onibusService.showMessage('Onibus atualizado com sucesso!', false);
-        this.router.navigate(['/onibus']);
-      });
+    if (this.formOnibus.valid) {
+      this.onibus = (this.formOnibus.value);
+      if (this.onibus.onibus_id === null) {
+        this.onibusService.save(this.onibus).subscribe(() => {
+          this.onibusService.showMessage('Onibus salvo com sucesso!', false);
+          this.router.navigate(['/onibus']);
+          this.formOnibus.reset();
+        });
+      } else {
+        this.onibusService.update(this.onibus).subscribe(() => {
+          this.onibusService.showMessage('Onibus atualizado com sucesso!', false);
+          this.router.navigate(['/onibus']);
+        });
+      }
     }
   }
-
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {

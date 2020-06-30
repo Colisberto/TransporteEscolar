@@ -10,7 +10,7 @@
   <div class="card-body">
     <div class="card-container">
       <div>
-        <form [formGroup]="formUsuario" (ngSubmit)="onSubmit()" class="example-form">
+        <form [formGroup]="formMotorista" (ngSubmit)="onSubmit()" class="example-form">
           <div style="display: none">
             <mat-form-field class="example-full-width">
               <mat-label>ID</mat-label>
@@ -68,7 +68,6 @@
           <div fxLayout="row" fxLayoutAlign="end end">
             <button mat-button type="submit" mat-raised-button color="primary">Salvar</button>
             <button mat-button class="btnDeletarMotorista" (click)="delete(motorista)">Deletar</button>
-            <button mat-button type="submit" mat-raised-button color="warn">Cancelar</button>
           </div>
 
 
