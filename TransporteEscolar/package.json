@@ -22,7 +22,7 @@
     "@angular/platform-browser": "~9.0.7",
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ngx-ion-simple-mask": "^0.8.8",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
